@@ -8,7 +8,7 @@ import Card from "@/components/home/Card";
 
 const page = () => {
   return (
-    <div className="w-[700px] mx-auto">
+    <div className="max-w-[700px] mx-auto px-3">
       <div className="my-6 flex items-center justify-between border-b pb-4">
         <div className="flex items-center gap-3">
           <Image
@@ -20,10 +20,10 @@ const page = () => {
             <Link href="/profile/rakib@gmail.com">
               <h4 className="hover:underline">Abdulla Amin</h4>
             </Link>
-            <p className="text-sm">Software Engineer</p>
+            <p className="text-xs md:text-sm">Software Engineer</p>
           </div>
         </div>
-        <div className="text-sm">
+        <div className="text-xs md:text-sm">
           <span className="text-gray-500">Published on </span>
           <span className="font-bold"> 12 Jun 2023</span>
         </div>
@@ -36,7 +36,7 @@ const page = () => {
           Apple Event September 7, 2022. Introducing an all-new iPhone lineup,
           rebuilt AirPods Pro, three new.
         </h2>
-        <Image className="rounded-md mb-3" src={Banner} alt="Banner" />
+        <Image className="w-full rounded-md mb-3" src={Banner} alt="Banner" />
         <div className="mb-3">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
           voluptatibus quos explicabo dignissimos velit accusamus quis, porro,

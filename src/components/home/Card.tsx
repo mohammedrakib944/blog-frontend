@@ -9,16 +9,16 @@ const Card = () => {
       <div>
         <Image
           src={Iphone}
-          className="w-[200px] h-[90px] md:w-[380px] md:h-full object-cover cursor-pointer"
+          className="w-[200px] h-[90px] md:w-[380px] md:h-full rounded object-cover cursor-pointer"
           alt="Iphone"
         />
       </div>
-      <div className="pl-3 md:px-4 pb-4 md:pt-4">
-        <button className="hidden md:block text-primary text-xs font-bold hover:underline mt-2">
+      <div className="pl-3 md:px-4 ">
+        <button className="hidden md:block text-primary text-xs font-bold hover:underline mt-2 mb-2">
           Technology
         </button>
         <Link href="/article/what-the-article">
-          <h6 className="text-sm  md:text-base py-1 hover:underline group-hover:text-primary cursor-pointer font-bold">
+          <h6 className="text-sm  md:text-base hover:underline group-hover:text-primary cursor-pointer font-bold">
             Tech you to use canvas to create a cool fragement cutting ou to use
             canvas
           </h6>
@@ -27,7 +27,9 @@ const Card = () => {
           <li className="hidden md:block font-bold text-black">
             Md.Tomal Kazi
           </li>
-          <li className="border-l border-r border-neutral px-2">142 views</li>
+          <li className="md:border-l border-r border-neutral pr-2 md:pl-2">
+            142 views
+          </li>
           <li>12 Jun 2023</li>
         </ul>
       </div>

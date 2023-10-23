@@ -40,7 +40,7 @@ const Slider: React.FC<SliderProps> = ({ postItem, delay }) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="w-full h-full flex items-end p-8 absolute bg-gradient-to-t from-blue-900 to-transparent">
+      <div className="w-full h-full flex items-end py-8 px-4 md:p-8 absolute bg-gradient-to-t from-black to-transparent">
         <div>
           <span className="badge badge-primary mb-2">
             {postItem[currentSlide].category}

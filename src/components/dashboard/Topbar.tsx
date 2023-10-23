@@ -10,7 +10,7 @@ const Topbar = () => {
       <div className="homeLayout flex items-center justify-between px-3 py-2">
         <Link href="/" className="col-span-3 flex items-center gap-2">
           <Image className="w-8" src={Logo} alt="Tech" />
-          <h3>
+          <h3 className="hidden md:block">
             Techr <span className="text-xs">(Admin)</span>
           </h3>
         </Link>
@@ -32,7 +32,7 @@ const Topbar = () => {
               </Link>
             </li>
             <li>
-              <Link className="btn btn-sm" href="/dashboard/write">
+              <Link className="w-[90px] btn btn-sm" href="/dashboard/write">
                 <BsPenFill /> Write
               </Link>
             </li>

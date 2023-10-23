@@ -9,7 +9,7 @@ const AuthorCard = ({ border }: { border?: boolean }) => {
           className="w-10 h-10 object-cover rounded-full border "
         />
         <div>
-          <p className="font-semibold hover:underline cursor-pointer">
+          <p className="font-semibold text-sm hover:underline cursor-pointer">
             Shariar Hossain Sun
           </p>
           <p className="flex items-center gap-1 text-neutral text-xs">

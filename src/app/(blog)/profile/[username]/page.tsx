@@ -7,7 +7,7 @@ import Card from "@/components/home/Card";
 
 const page = () => {
   return (
-    <div className="w-[700px] mx-auto pt-6">
+    <div className="max-w-[700px] mx-auto px-3 pt-6">
       <div className="flex items-center gap-4">
         <Image
           className="w-[150px] h-[150px] object-cover rounded-full border border-primary"

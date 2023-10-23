@@ -9,7 +9,7 @@ const page = () => {
   return (
     <div className="homeLayout p-3">
       <h3 className="mb-2">Dashboard</h3>
-      <div className="flex justify-between gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
         <ViewCard title="Total Posts" count={13} />
         <ViewCard title="Total Views" count={1251} />
         <ViewCard title="Total Users" count={5} />
