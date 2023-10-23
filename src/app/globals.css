@@ -2,26 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@layer base {
+  h1 {
+    @apply text-3xl font-bold;
+  }
+  h2 {
+    @apply text-xl font-semibold;
+  }
+  h3 {
+    @apply text-lg font-semibold;
+  }
+  h4 {
+    @apply text-base font-bold;
+  }
+  small {
+    @apply text-xs;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@layer components {
+  .badge {
+    @apply text-xs font-semibold py-3;
+  }
+  .homeLayout {
+    @apply max-w-[1100px] mx-auto;
+  }
+  .btn {
+    @apply bg-[#1f6feb] hover:bg-blue-700 rounded-full text-white px-8 capitalize;
+  }
+  .btn-sm {
+    @apply px-4 text-xs;
+  }
+  .btn_big {
+    @apply btn bg-primary w-full border-none rounded-sm;
+  }
+  .btn_big_blue {
+    @apply btn bg-info hover:bg-blue-800 w-full border-none rounded-sm;
+  }
+}
+
+.ql-editor {
+  height: 400px !important;
+  padding: 16px 8px !important;
+  font-size: 18px !important;
+}
+.ql-toolbar.ql-snow {
+  width: fit-content;
+  border-radius: 40px;
+  border: 2px solid black;
+  padding: 8px !important;
+  background: #f1f1f1;
+}
+.ql-toolbar.ql-snow + .ql-container.ql-snow {
+  border: none !important;
 }
