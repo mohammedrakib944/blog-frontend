@@ -1,18 +1,26 @@
 import Card from "@/components/home/Card";
 import AuthorCard from "@/components/home/AuthorCard";
 import Banner from "@/components/home/Banner";
+import Categories from "@/components/home/Categories";
 
 export default function Home() {
   return (
     <main className="max-w-[1100px] mx-auto flex flex-col lg:grid lg:grid-cols-10 gap-5 mt-3 px-3">
-      <div className="col-span-3 order-2 lg:order-1 h-fit bg-white rounded-md border lg:sticky top-[68px]">
-        <p className="border-b p-3 font-bold">Author list</p>
-        <AuthorCard border={true} />
-        <AuthorCard border={true} />
-        <AuthorCard border={true} />
-        <AuthorCard border={true} />
-        <AuthorCard />
+      <div className="col-span-3 order-2 lg:order-1 h-fit lg:sticky top-[68px]">
+        <div className=" bg-white rounded-md border ">
+          <p className="border-b p-3 font-bold">Author list</p>
+          <AuthorCard border={true} />
+          <AuthorCard border={true} />
+          <AuthorCard border={true} />
+          <AuthorCard border={true} />
+          <AuthorCard />
+        </div>
+        <div>
+          <p className="mt-2 p-3 font-bold">Tags</p>
+          <Categories />
+        </div>
       </div>
+
       <div className="col-span-7 order-1 lg:order-2">
         <Banner />
         <div>

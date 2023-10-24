@@ -17,7 +17,7 @@ const page = () => {
       </div>
       <div className="text-center">
         <h3 className="mt-6">Search Post</h3>
-        <div className="mt-4 mb-6 col-span-4 overflow-hidden flex w-full max-w-[600px] border shadow-md rounded-lg mx-auto">
+        <div className="mt-4 mb-6 col-span-4 overflow-hidden flex w-full max-w-[600px] border hover:shadow-md rounded-lg mx-auto">
           <input
             className="w-full bg-white py-3 px-4 focus:outline-none text-sm"
             type="text"

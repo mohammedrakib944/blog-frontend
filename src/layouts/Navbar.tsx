@@ -3,6 +3,7 @@ import Image from "next/image";
 import Logo from "@/assets/logo.svg";
 import { MdSearch } from "react-icons/md";
 import { RxAvatar, RxDashboard } from "react-icons/rx";
+import { BsPenFill } from "react-icons/bs";
 import Link from "next/link";
 
 const Navbar = () => {
@@ -14,7 +15,7 @@ const Navbar = () => {
           <Image className="w-8" src={Logo} alt="Tech" />
           <h3>Techr</h3>
         </Link>
-        <div className="col-span-5 bg-gray-200 overflow-hidden flex w-full max-w-[600px] rounded-lg">
+        <div className="col-span-5 bg-gray-100 overflow-hidden flex w-full max-w-[600px] rounded-lg">
           <input
             className="w-full bg-transparent py-2 px-4 focus:outline-none text-sm"
             type="text"
@@ -46,6 +47,11 @@ const Navbar = () => {
                 <li>
                   <Link href="/profile/abdulla@gmail.com">
                     <RxAvatar /> Profie
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/dashboard/write">
+                    <BsPenFill /> Write
                   </Link>
                 </li>
                 <li>

@@ -2,26 +2,35 @@ import React from "react";
 
 const Categories = () => {
   return (
-    <ul className="mb-3 flex flex-col gap-1">
-      <li className="w-full border   px-4 py-2 rounded-sm bg-white text-xs hover:bg-error cursor-pointer duration-150">
-        Javascript No alsd
-      </li>
-      <li className="w-full  border   px-4 py-2 rounded-sm bg-white text-xs hover:bg-error cursor-pointer duration-150">
+    <div className="mb-3 flex flex-wrap gap-2">
+      <button className="btn btn-sm hover:bg-gray-100 bg-white text-black ">
         HTML
-      </li>
-      <li className="w-full  border   px-4 py-2 rounded-sm bg-white text-xs hover:bg-error cursor-pointer duration-150">
+      </button>
+      <button className="btn btn-sm hover:bg-gray-100 bg-white text-black ">
         CSS
-      </li>
-      <li className="w-full  border   px-4 py-2 rounded-sm bg-white text-xs hover:bg-error cursor-pointer duration-150">
+      </button>
+      <button className="btn btn-sm hover:bg-gray-100 bg-white text-black ">
         JavaScript
-      </li>
-      <li className="w-full  border   px-4 py-2 rounded-sm bg-white text-xs hover:bg-error cursor-pointer duration-150">
-        Tech
-      </li>
-      <li className="w-full  border   px-4 py-2 rounded-sm bg-white text-xs hover:bg-error cursor-pointer duration-150">
+      </button>
+      <button className="btn btn-sm hover:bg-gray-100 bg-white text-black ">
         TypeScript
-      </li>
-    </ul>
+      </button>
+      <button className="btn btn-sm hover:bg-gray-100 bg-white text-black ">
+        Java
+      </button>
+      <button className="btn btn-sm hover:bg-gray-100 bg-white text-black ">
+        C++
+      </button>
+      <button className="btn btn-sm hover:bg-gray-100 bg-white text-black ">
+        Blog
+      </button>
+      <button className="btn btn-sm hover:bg-gray-100 bg-white text-black ">
+        Articles
+      </button>
+      <button className="btn btn-sm hover:bg-gray-100 bg-white text-black ">
+        Others
+      </button>
+    </div>
   );
 };
 
