@@ -1,5 +1,6 @@
 import ViewCard from "@/components/dashboard/ViewCard";
 import React from "react";
+import { FaEdit } from "react-icons/fa";
 import { MdSearch } from "react-icons/md";
 import { BsPenFill } from "react-icons/bs";
 import { RxCross2 } from "react-icons/rx";
@@ -29,8 +30,8 @@ const page = () => {
         </div>
       </div>
       <div>
-        <div className="overflow-x-auto">
-          <table className="table table-pin-rows table-pin-cols border">
+        <div className="border rounded-xl overflow-x-auto">
+          <table className="table table-zebra table-pin-rows table-pin-cols">
             <thead>
               <tr className="text-black">
                 <th>ID</th>
@@ -55,7 +56,7 @@ const page = () => {
                     className="tooltip hover:text-primary"
                     data-tip="Edit"
                   >
-                    <BsPenFill />
+                    <FaEdit />
                   </button>
                   <button
                     className="tooltip hover:text-red-600"

@@ -22,13 +22,13 @@
 
 @layer components {
   .badge {
-    @apply text-xs font-semibold py-3;
+    @apply text-[11px] font-semibold py-2;
   }
   .homeLayout {
     @apply max-w-[1100px] mx-auto;
   }
   .btn {
-    @apply bg-[#1f6feb] hover:bg-blue-700 rounded-full text-white px-8 capitalize;
+    @apply bg-[#1f6feb] hover:bg-blue-700 rounded-full text-white px-8 capitalize border-black/30;
   }
   .btn-sm {
     @apply px-4 text-xs;

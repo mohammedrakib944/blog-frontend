@@ -15,7 +15,7 @@ const Topbar = () => {
           </h3>
         </Link>
         <div>
-          <ul className="flex items-center gap-4 text-sm font-semibold">
+          <ul className="flex items-center gap-4 lg:gap-6 text-sm font-semibold">
             <li>
               <Link className="hover:text-primary" href="/dashboard">
                 Dashboard
@@ -27,7 +27,7 @@ const Topbar = () => {
               </Link>
             </li>
             <li>
-              <Link className="hover:text-primary" href="/dashboard/categories">
+              <Link className="hover:text-primary" href="/dashboard/category">
                 Category
               </Link>
             </li>

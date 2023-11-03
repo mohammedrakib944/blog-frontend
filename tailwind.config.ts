@@ -19,7 +19,7 @@ const config: Config = {
           // "base-100": "#EEE7D7",
           "base-100": "#FFF",
           info: "#58a6ff",
-          success: "#09e841",
+          success: "#21e205",
           warning: "#ef4444",
           error: "#21262d",
         },
