@@ -1,9 +1,10 @@
 import React from "react";
 import Image from "next/image";
+import { AiFillEye } from "react-icons/ai";
 import Elon from "@/assets/photos/elon.jpg";
-import LikeHandle from "@/components/common/LikeHandle";
 import Link from "next/link";
 import Card from "@/components/home/Card";
+import TopPostCard from "@/components/home/TopPostCard";
 
 const page = () => {
   return (
@@ -19,12 +20,17 @@ const page = () => {
             Abdulla Amin <span className="text-sm">(Software Engineer)</span>
           </h4>
           <div className="my-1">
-            <LikeHandle fixed />
             <p className="mt-2 text-sm">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto est
               quidem perferendis.
             </p>
-            <div className="flex gap-3 mt-2">
+            <p className="mt-2 text-xs flex items-center gap-2 text-neutral">
+              <span className="text-lg">
+                <AiFillEye />
+              </span>{" "}
+              1212 views
+            </p>
+            <div className="flex gap-3 mt-4">
               <Link
                 className="text-xs font-bold text-primary hover:underline"
                 href="https://www.linkedin.com/in/md-rakibuzzaman-246a701b2/"
@@ -47,10 +53,10 @@ const page = () => {
       <br />
       <h4 className="mt-4">Articles from Abdulla Amin</h4>
       <div className="mt-3 mb-10 border-t">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        <TopPostCard />
+        <TopPostCard />
+        <TopPostCard />
+        <TopPostCard />
       </div>
     </div>
   );

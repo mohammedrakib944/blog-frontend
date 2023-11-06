@@ -2,7 +2,7 @@
 import Topbar from "@/components/dashboard/Topbar";
 import "../globals.css";
 import { Inter } from "next/font/google";
-import Head from "next/head";
+import StoreProvider from "@/redux/StoreProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,13 +13,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Head>
-        <title>Dashboard</title>
-      </Head>
-      <body className={inter.className}>
-        <Topbar />
-        {children}
-      </body>
+      <StoreProvider>
+        <body className={inter.className}>
+          <Topbar />
+          {children}
+        </body>
+      </StoreProvider>
     </html>
   );
 }

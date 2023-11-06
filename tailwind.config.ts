@@ -11,13 +11,11 @@ const config: Config = {
     themes: [
       {
         blog: {
-          primary: "#0085FF",
+          primary: "#0094FF",
           secondary: "#0d1117",
-          // accent: "#D2C5BA",
           accent: "#d8d8d8",
           neutral: "#717066",
-          // "base-100": "#EEE7D7",
-          "base-100": "#FFF",
+          "base-100": "#FFFFFF",
           info: "#58a6ff",
           success: "#21e205",
           warning: "#ef4444",

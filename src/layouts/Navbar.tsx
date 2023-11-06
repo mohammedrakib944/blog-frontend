@@ -9,7 +9,7 @@ import Link from "next/link";
 const Navbar = () => {
   const isLoggedin = true;
   return (
-    <div className="w-full border-b  bg-white z-50 sticky top-0 shadow-sm">
+    <div className="w-full border-b  bg-white z-50 sticky top-0">
       <div className="homeLayout grid grid-cols-10 px-3 py-2">
         <Link href="/" className="col-span-3 flex items-center gap-2">
           <Image className="w-8" src={Logo} alt="Tech" />

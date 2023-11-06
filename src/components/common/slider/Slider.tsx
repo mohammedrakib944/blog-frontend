@@ -36,39 +36,41 @@ const Slider: React.FC<SliderProps> = ({ postItem, delay }) => {
 
   return (
     <div
-      className="slider h-[300px] relative"
+      className="slider w-full"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="w-full h-full flex items-end py-8 px-4 md:p-8 absolute bg-gradient-to-t from-black to-transparent">
-        <div>
+      <div className="w-full flex justify-around">
+        <Image
+          className="max-w-[400px] max-h-[300px] object-cover border-r"
+          src={postItem[currentSlide].image}
+          alt={`Slide ${currentSlide}`}
+        />
+        <div className="w-[600px] p-4">
           <span className="badge badge-primary mb-2">
             {postItem[currentSlide].category}
           </span>
-          <h2 className="text-white hover:underline cursor-pointer">
+          <h2 className="text-gray-700 hover:underline cursor-pointer">
             {postItem[currentSlide].title}
           </h2>
-          <p className="text-gray-300 text-xs mt-2">
+          <p className="text-gray-700 text-xs mt-2">
             <span className="font-bold hover:underline cursor-pointer">
               {postItem[currentSlide].author}
             </span>{" "}
             - <span>{postItem[currentSlide].date}</span>
           </p>
         </div>
-      </div>
-      <Image
-        className="w-full"
-        src={postItem[currentSlide].image}
-        alt={`Slide ${currentSlide}`}
-      />
-      <div className="pagination-dots">
-        {postItem.map((_, index) => (
-          <span
-            key={index}
-            className={`dot ${index === currentSlide ? "active" : ""}`}
-            onClick={() => handleDotClick(index)}
-          ></span>
-        ))}
+        <div className="pagination-dots">
+          {postItem.map((_, index) => (
+            <span
+              key={index}
+              className={`dot bg-primary ${
+                index === currentSlide ? "active" : ""
+              }`}
+              onClick={() => handleDotClick(index)}
+            ></span>
+          ))}
+        </div>
       </div>
     </div>
   );

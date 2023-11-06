@@ -34,7 +34,7 @@ const Data = [
 
 const Banner = () => {
   return (
-    <div className="w-full overflow-hidden bg-white mb-3 rounded-md">
+    <div className="w-full overflow-hidden bg-white border mb-3 rounded-md">
       <Slider postItem={Data} delay={2500} />
     </div>
   );
