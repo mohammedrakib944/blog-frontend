@@ -5,7 +5,7 @@ import Image from "next/image";
 const Footer = () => {
   return (
     <div className="mt-10 bg-base-200">
-      <div className="homeLayout">
+      <div className="max-w-[1140px] mx-auto">
         <footer className="footer p-10 text-base-content">
           <nav>
             <header className="footer-title">Services</header>
@@ -30,13 +30,13 @@ const Footer = () => {
         </footer>
       </div>
       <div className="bg-base-300">
-        <div className="homeLayout">
+        <div className="max-w-[1140px] mx-auto">
           <footer className="footer px-10 py-4 border-t text-base-content border-base-300">
             <aside className="items-center grid-flow-col">
               <Image src={Logo} className="w-10" alt="Logo" />
               <p>
-                Techr Ltd. <br />
-                Write articles make money
+                <span className="font-bold">Techr Ltd.</span> <br />
+                <span className="text-xs">Write articles make money</span>
               </p>
             </aside>
             <nav className="md:place-self-center md:justify-self-end">

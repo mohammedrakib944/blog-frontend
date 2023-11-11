@@ -1,9 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Elon from "@/assets/photos/elon.jpg";
 import Banner from "@/assets/Banner/iphone.jpg";
-import Card from "@/components/home/Card";
+import { AiFillEye } from "react-icons/ai";
 import TopPostCard from "@/components/home/TopPostCard";
 
 const page = () => {
@@ -18,13 +17,13 @@ const page = () => {
       </p>
       <div className="my-4 flex items-center justify-between border-b pb-6 pt-3">
         <div className="flex items-center gap-3">
-          <Image
+          <img
             className="w-[50px] h-[50px] object-cover rounded-full border border-primary"
-            src={Elon}
+            src="/avatar.jpg"
             alt="Nothing"
           />
           <div>
-            <Link href="/profile/rakib@gmail.com">
+            <Link href="/profile/7">
               <p className="hover:underline font-semibold">Abdulla Amin</p>
             </Link>
             <p className="text-xs">Software Engineer</p>
@@ -36,9 +35,14 @@ const page = () => {
         </div>
       </div>
       <div className="my-4">
-        <p className="flex gap-2 items-center">
-          <span className="text-xs"> 20 views</span>
-        </p>
+        <div className="flex gap-2 items-center">
+          <p className="text-xs flex gap-2 items-center">
+            <span className="text-lg">
+              <AiFillEye />
+            </span>
+            <span> 20 views</span>
+          </p>
+        </div>
       </div>
       <div>
         <Image className="w-full rounded-md mb-6" src={Banner} alt="Banner" />

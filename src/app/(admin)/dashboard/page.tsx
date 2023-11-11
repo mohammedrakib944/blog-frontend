@@ -1,3 +1,4 @@
+"use client";
 import ViewCard from "@/components/dashboard/ViewCard";
 import React from "react";
 import { FaEdit } from "react-icons/fa";
@@ -5,8 +6,11 @@ import { MdSearch } from "react-icons/md";
 import { BsPenFill } from "react-icons/bs";
 import { RxCross2 } from "react-icons/rx";
 import Link from "next/link";
+import { useUser } from "@clerk/nextjs";
 
 const page = () => {
+  const { user } = useUser();
+  console.log("User - Dashboard: ", user?.fullName, user?.imageUrl);
   return (
     <div className="homeLayout p-3">
       <h3 className="mb-2">Dashboard</h3>

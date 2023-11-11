@@ -1,12 +1,10 @@
 import React from "react";
-import Image from "next/image";
-import Elone from "@/assets/photos/elon.jpg";
 import { AiFillEye } from "react-icons/ai";
 import Link from "next/link";
 
 const TopPostCard = () => {
   return (
-    <div className="flex gap-4 md:gap-6 border-b py-5 px-5 md:px-10">
+    <div className="flex gap-4 md:gap-6 border-b py-5 pl-2 pr-5 md:px-10">
       <div className="w-[100px]">
         <img
           src="/avatar.jpg"
@@ -15,7 +13,7 @@ const TopPostCard = () => {
         />
       </div>
       <div>
-        <p className="text-sm pb-3">
+        <p className="text-sm pb-2">
           <span className="text-primary font-bold">Elon Bro</span>{" "}
           <span className="text-neutral pl-4">23 jun 2023</span>
         </p>
