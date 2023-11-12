@@ -7,18 +7,18 @@ type Props = {
 };
 const Alerts = ({ status, message }: Props) => {
   return (
-    <div className="w-full flex justify-center py-6">
+    <div className="max-w-[700px] mx-auto flex justify-center py-6">
       {status === "error" && (
-        <div className="max-w-[500px] alert bg-red-400/80 rounded-xl border-red-500">
-          <span className="text-2xl text-red-900">
+        <div className="w-full p-6 text-center alert bg-red-400/20 rounded-xl border-red-500">
+          <span className="text-2xl text-red-700">
             <AiOutlineWarning />
           </span>
-          <span className="font-medium text-red-900">{message}</span>
+          <span className="font-medium text-red-700">{message}</span>
         </div>
       )}
 
       {status === "success" && (
-        <div className="max-w-[500px] alert bg-success/40 rounded-xl border-green-500">
+        <div className="py-6 text-center alert bg-success/40 rounded-xl border-green-500">
           <span className="text-2xl text-green-900">
             <AiOutlineCheck />
           </span>

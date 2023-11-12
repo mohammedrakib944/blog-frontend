@@ -28,7 +28,7 @@
     @apply max-w-[1100px] mx-auto;
   }
   .btn {
-    @apply bg-[#1f6feb] hover:bg-blue-700 rounded-full text-white px-8 capitalize border-black/30;
+    @apply bg-[#1f6feb] hover:bg-blue-700 hover:border-black/60 rounded-full text-white px-8 capitalize border-black/30;
   }
   .btn-sm {
     @apply px-4 text-xs;
@@ -38,6 +38,9 @@
   }
   .btn_big_blue {
     @apply btn bg-info hover:bg-blue-800 w-full border-none rounded-sm;
+  }
+  .inputs {
+    @apply border border-gray-300 rounded-sm px-4 py-2 w-full focus:outline-primary;
   }
 }
 

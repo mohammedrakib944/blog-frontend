@@ -24,7 +24,11 @@ const page = ({ params }: { params: { user_id: number } }) => {
   if (isLoading) return <Scklaton />;
 
   if (!isLoading && isError)
-    return <Alerts status="error" message="Could't fetch user!" />;
+    return (
+      <div className="min-h-screen pt-4">
+        <Alerts status="error" message="No user found" />
+      </div>
+    );
 
   return (
     <div className="max-w-[700px] mx-auto px-3 pt-6">
@@ -46,7 +50,7 @@ const page = ({ params }: { params: { user_id: number } }) => {
                 </h4>
                 {loggedInUser?.user_id === User?.user_id && (
                   <Link
-                    href={`/dashboard/profile-update/${User?.user_id}`}
+                    href={`/profile-update/${User?.user_id}`}
                     className="tooltip tooltip-primary hover:text-primary"
                     data-tip="Update Profile"
                   >
