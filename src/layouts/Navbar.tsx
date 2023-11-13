@@ -64,7 +64,7 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/dashboard/write">
+                  <Link href="/write">
                     <BsPenFill /> Write
                   </Link>
                 </li>

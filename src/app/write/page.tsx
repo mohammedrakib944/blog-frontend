@@ -97,7 +97,7 @@ const Write = () => {
   }, [isSuccess, isError]);
 
   return (
-    <div className="homeLayout p-3">
+    <div className="homeLayout min-h-screen p-3">
       <Toaster />
       <form
         className="mt-5 flex flex-col md:flex-row gap-5"
@@ -126,7 +126,6 @@ const Write = () => {
             onChange={setContent}
           />
         </div>
-
         <div className="min-w-[300px]">
           <p className="text-sm mb-2 font-semibold text-gray-500">
             Cover image URL

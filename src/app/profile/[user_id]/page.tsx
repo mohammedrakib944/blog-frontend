@@ -98,7 +98,7 @@ const page = ({ params }: { params: { user_id: number } }) => {
           </div>
 
           <br />
-          <h4 className="mt-4">Articles from Abdulla Amin</h4>
+          <h4 className="mt-4">Articles from {User?.name}</h4>
           <div className="mt-3 mb-10 border-t">
             {User_posts
               ? User_posts.map((post: any) => (

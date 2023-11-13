@@ -2,7 +2,7 @@ import React from "react";
 
 const Scklaton = () => {
   return (
-    <div className="px-10">
+    <div className="max-w-[800px] mx-auto px-10">
       <div className="w-full mx-auto">
         <div className="animate-pulse flex space-x-4">
           <div className="flex-1 space-y-6 py-1">

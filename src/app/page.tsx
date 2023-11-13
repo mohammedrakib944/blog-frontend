@@ -3,18 +3,21 @@ import AuthorCard from "@/components/home/AuthorCard";
 import Categories from "@/components/home/Categories";
 import TopPostCard from "@/components/home/TopPostCard";
 import Scklaton from "@/components/home/PostsScklaton";
-import { useState } from "react";
+import Link from "next/link";
+import { AiOutlineArrowRight } from "react-icons/ai";
 import {
   useGetFeaturedPostQuery,
   useGetAllPostsQuery,
 } from "@/redux/features/post/postApi";
 
 export default function Home() {
-  const [page_number, setPage_number] = useState(0);
   const { data: featured_posts } = useGetFeaturedPostQuery(null);
-  const { data: all_posts } = useGetAllPostsQuery(page_number, {
-    refetchOnMountOrArgChange: true,
-  });
+  const { data: all_posts } = useGetAllPostsQuery(
+    { page: 0 },
+    {
+      refetchOnMountOrArgChange: true,
+    }
+  );
 
   return (
     <main className="max-w-[1100px] mx-auto flex flex-col lg:grid lg:grid-cols-10 gap-5 mt-3 px-3">
@@ -56,6 +59,15 @@ export default function Home() {
             ) : (
               <Scklaton />
             )}
+            <br />
+            <br />
+            <div className="pl-10 mb-10">
+              <Link href={`/page/${1}`}>
+                <button className="btn btn-sm">
+                  Next Page <AiOutlineArrowRight />
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
