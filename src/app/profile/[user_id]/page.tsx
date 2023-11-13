@@ -1,12 +1,18 @@
 "use client";
 import React from "react";
-import { AiFillEye, AiFillEdit } from "react-icons/ai";
+import {
+  AiFillEye,
+  AiFillEdit,
+  AiFillLinkedin,
+  AiFillGithub,
+} from "react-icons/ai";
 import Link from "next/link";
 import TopPostCard from "@/components/home/TopPostCard";
 import { useGetUserByIdQuery } from "@/redux/features/user/userApi";
 import Alerts from "@/components/common/Alerts";
 import Scklaton from "@/components/profile/Scklaton";
 import { useSelector } from "react-redux";
+import { useGetPostsByUserIdQuery } from "@/redux/features/post/postApi";
 
 const page = ({ params }: { params: { user_id: number } }) => {
   const { User: loggedInUser } = useSelector((state: any) => state.user);
@@ -14,12 +20,10 @@ const page = ({ params }: { params: { user_id: number } }) => {
     data: User,
     isError,
     isLoading,
-    error,
   } = useGetUserByIdQuery(params.user_id, { refetchOnMountOrArgChange: true });
-
-  console.log("User_id: ", loggedInUser?.user_id, User?.user_id);
-
-  if (error) console.log("Error: ", error);
+  const { data: User_posts } = useGetPostsByUserIdQuery(params.user_id, {
+    refetchOnMountOrArgChange: true,
+  });
 
   if (isLoading) return <Scklaton />;
 
@@ -42,45 +46,52 @@ const page = ({ params }: { params: { user_id: number } }) => {
             />
             <div>
               <div className="flex items-center gap-6 md:gap-10">
-                <h4>
+                <h4 className="text-2xl">
                   <span>{User?.name} </span>
-                  <span className="text-sm">
-                    {User?.occupation ? <span>(User?.occupation)</span> : ""}
-                  </span>
                 </h4>
                 {loggedInUser?.user_id === User?.user_id && (
                   <Link
                     href={`/profile-update/${User?.user_id}`}
-                    className="tooltip tooltip-primary hover:text-primary"
+                    className="tooltip hover:text-primary"
                     data-tip="Update Profile"
                   >
                     <AiFillEdit />
                   </Link>
                 )}
               </div>
+              <span className="text-sm font-semibold text-gray-600">
+                {User?.occupation ? <span>{User?.occupation}</span> : ""}
+              </span>
               <div className="my-1">
-                <p className="mt-2 text-sm">{User?.bio}</p>
-                <p className="mt-2 text-xs flex items-center gap-2 text-neutral">
-                  <span className="text-lg">
-                    <AiFillEye />
-                  </span>
-                  1212 views
-                </p>
+                <p className="mt-1 text-sm text-neutral">{User?.bio}</p>
                 <div className="flex gap-3 mt-4">
-                  <Link
-                    className="text-xs font-bold text-primary hover:underline"
-                    href="https://www.linkedin.com/in/md-rakibuzzaman-246a701b2/"
-                    target="_blank"
-                  >
-                    Linkedin
-                  </Link>
-                  <Link
-                    className="text-xs font-bold text-primary hover:underline"
-                    href="https://www.linkedin.com/in/md-rakibuzzaman-246a701b2/"
-                    target="_blank"
-                  >
-                    GitHub
-                  </Link>
+                  {User?.linkedin ? (
+                    <Link
+                      className="text-xl hover:text-primary tooltip"
+                      href={User?.linkedin}
+                      target="_blank"
+                      data-tip="Linkedin"
+                    >
+                      <AiFillLinkedin />
+                    </Link>
+                  ) : (
+                    ""
+                  )}
+
+                  {User?.github ? (
+                    <Link
+                      className="text-3xl hover:text-primary tooltip"
+                      href={User?.github}
+                      data-tip="Github"
+                      target="_blank"
+                    >
+                      <span className="text-xl">
+                        <AiFillGithub />
+                      </span>
+                    </Link>
+                  ) : (
+                    ""
+                  )}
                 </div>
               </div>
             </div>
@@ -89,10 +100,13 @@ const page = ({ params }: { params: { user_id: number } }) => {
           <br />
           <h4 className="mt-4">Articles from Abdulla Amin</h4>
           <div className="mt-3 mb-10 border-t">
-            <TopPostCard />
-            <TopPostCard />
-            <TopPostCard />
-            <TopPostCard />
+            {User_posts
+              ? User_posts.map((post: any) => (
+                  <React.Fragment key={post.post_id}>
+                    <TopPostCard post={post} />
+                  </React.Fragment>
+                ))
+              : ""}
           </div>
         </>
       ) : (

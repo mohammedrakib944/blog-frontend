@@ -1,46 +1,61 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import { AiFillEye } from "react-icons/ai";
 import Link from "next/link";
+import DOMPurify from "dompurify";
+import { format, parseISO } from "date-fns";
 
-const TopPostCard = () => {
+const TopPostCard = ({ post }: any) => {
+  const [plainTextContent, setPlainTextContent] = useState("");
+
+  useEffect(() => {
+    if (post?.content) {
+      const text = DOMPurify.sanitize(post?.content?.substring(0, 30), {
+        ALLOWED_TAGS: [],
+      });
+      setPlainTextContent(text);
+    }
+  }, [post]);
+
   return (
-    <div className="flex gap-4 md:gap-6 border-b py-5 pl-2 pr-5 md:px-10">
-      <div className="w-[100px]">
-        <Link href="/profile/8">
+    <div className="flex gap-2 border-b py-5 pl-2 pr-5 md:px-10">
+      <div className="w-[50px] md:w-[100px]">
+        <Link href={`/profile/${post?.user_id}`}>
           <img
-            src="/avatar.jpg"
-            className="min-w-[40px] min-h-[40px] md:min-w-[60px] md:min-h-[60px] rounded-full object-cover border border-black"
+            src={post?.photo || "/avatar.jpg"}
+            className="w-[40px] h-[40px] md:w-[70px] md:h-[70px] hover:scale-105 duration-150 rounded-full object-cover "
             alt="Elone"
           />
         </Link>
       </div>
       <div>
         <div className="text-sm pb-2">
-          <Link href="/profile/8">
-            <span className="text-primary font-bold">Elon Bro </span>
-          </Link>
-          <span className="text-neutral pl-4">23 jun 2023</span>
+          {post?.name && post?.user_id ? (
+            <Link href={`/profile/${post.user_id}`} className="pr-4">
+              <span className="text-primary font-bold">{post.name}</span>
+            </Link>
+          ) : (
+            ""
+          )}
+          <span className="text-neutral">
+            {post?.date && format(parseISO(post?.date), "dd MMM yyyy")}
+          </span>
         </div>
         <Link href="/article/what-the-article">
-          <h4 className="mb-1 hover:text-primary">
-            Tech you to use canvas to create a cool fragement cutting ou to use
-            canvas
-          </h4>
+          <h4 className="mb-1 hover:text-primary">{post?.title}</h4>
         </Link>
-
-        <p className="text-sm text-neutral">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit beatae
-          reprehenderit veniam molestiae! Laboriosam molestiae tempora suscipit
-          repudiandae illum inventore.
-        </p>
+        <div
+          className="text-sm text-neutral"
+          dangerouslySetInnerHTML={{ __html: plainTextContent }}
+        />
         <span className="text-neutral cursor-pointer hover:underline text-xs font-normal">
-          Technology
+          {post?.category}
         </span>
         <p className="mt-2 text-xs flex items-center gap-2 text-neutral">
           <span className="text-lg">
             <AiFillEye />
           </span>{" "}
-          1212 views
+          {post?.views} views
         </p>
       </div>
     </div>

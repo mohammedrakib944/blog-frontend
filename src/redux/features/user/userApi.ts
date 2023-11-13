@@ -5,7 +5,7 @@ const userApi = apiSlice.injectEndpoints({
     // get all users
     getAllUsers: builder.query({
       query: () => ({
-        url: "/users",
+        url: "/user",
       }),
     }),
 
@@ -35,8 +35,8 @@ const userApi = apiSlice.injectEndpoints({
 
     // update user
     updateUser: builder.mutation({
-      query: ({ user_id, data }: { user_id: string; data: string }) => ({
-        url: `/users/${user_id}`,
+      query: ({ id, data }: any) => ({
+        url: `/user/${id}`,
         method: "PATCH",
         body: data,
       }),

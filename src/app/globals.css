@@ -40,7 +40,7 @@
     @apply btn bg-info hover:bg-blue-800 w-full border-none rounded-sm;
   }
   .inputs {
-    @apply border border-gray-300 rounded-sm px-4 py-2 w-full focus:outline-primary;
+    @apply border border-gray-300 rounded-sm px-4 py-2 w-full focus:outline-primary text-sm;
   }
 }
 

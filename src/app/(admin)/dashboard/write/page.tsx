@@ -1,7 +1,12 @@
 "use client";
-import React, { useState } from "react";
-import { BiImageAdd } from "react-icons/bi";
+import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
+import toast, { Toaster } from "react-hot-toast";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import { useGetAllCategoriesQuery } from "@/redux/features/category/categoryApi";
+import { useCreatePostMutation } from "@/redux/features/post/postApi";
+import { useSelector } from "react-redux";
 
 // Editor
 import "react-quill/dist/quill.snow.css";
@@ -29,10 +34,25 @@ function imageHandler(this: any) {
   tooltip.edit("image");
   tooltip.textbox.placeholder = "Embed URL";
 }
+type Inputs = {
+  cover_image: string;
+  title: string;
+  category: string;
+};
 
 const Write = () => {
+  const router = useRouter();
+  const { User } = useSelector((state: any) => state.user);
+  const { data: categories } = useGetAllCategoriesQuery(null);
+  const [createPost, { isLoading, isSuccess, isError }] =
+    useCreatePostMutation();
   const [content, setContent] = useState("");
-  const [coverImage, setCoverImage] = useState("");
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<Inputs>();
 
   const toolbarOptions = [
     [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -53,46 +73,118 @@ const Write = () => {
     },
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleFormSubmit: SubmitHandler<Inputs> = (data) => {
+    if (!User) return toast.error("You must login to create post");
+    const sendingData = {
+      ...data,
+      content: content,
+      user_id: User.user_id,
+    };
 
-    console.log("Context: ", content);
+    createPost(sendingData);
   };
+
+  // Handle response
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("Create post successfully");
+      reset();
+      setContent("");
+    }
+    if (isError) {
+      toast.error("Create post failed");
+    }
+  }, [isSuccess, isError]);
 
   return (
     <div className="homeLayout p-3">
+      <Toaster />
       <form
-        className="max-w-[700px] mx-auto mt-5 flex flex-col"
-        onSubmit={handleSubmit}
+        className="mt-5 flex flex-col md:flex-row gap-5"
+        onSubmit={handleSubmit(handleFormSubmit)}
       >
-        <div className="flex items-center justify-between gap-4 mb-4">
+        <div className="w-full border-r pr-5">
           <input
             type="text"
-            placeholder="🖼️ Cover Image URL"
-            value={coverImage}
-            onChange={(e) => setCoverImage(e.target.value)}
-            className="w-full border-2 border-success rounded-full px-4 py-2 text-sm outline-primary"
+            placeholder="Title..."
+            {...register("title", {
+              required: "Title is required",
+            })}
+            className="w-full text-5xl font-semibold outline-none mt-2"
           />
-
-          <button
-            type="submit"
-            className="btn btn-sm bg-green-500 hover:bg-green-600 border-success"
-          >
-            Publish
-          </button>
+          {errors.title && (
+            <span className="text-xs text-red-600 pl-3">
+              {errors.title?.message}
+            </span>
+          )}
+          <br />
+          <br />
+          <ReactQuill
+            value={content}
+            placeholder="Article description ..."
+            modules={module}
+            onChange={setContent}
+          />
         </div>
-        <input
-          type="text"
-          placeholder="Title..."
-          className="w-full text-5xl font-semibold outline-none mb-4 mt-2"
-        />
 
-        <ReactQuill
-          value={content}
-          placeholder="Article description ..."
-          modules={module}
-          onChange={setContent}
-        />
+        <div className="min-w-[300px]">
+          <p className="text-sm mb-2 font-semibold text-gray-500">
+            Cover image URL
+          </p>
+          <div className="flex items-center justify-between gap-4">
+            <input
+              type="text"
+              placeholder="Cover Image URL"
+              {...register("cover_image")}
+              className="w-full border-2 rounded-full px-4 py-2 text-sm outline-primary"
+            />
+          </div>
+
+          <div className="mt-4">
+            <p className="text-sm mb-2 font-semibold text-gray-500">Category</p>
+            <select
+              {...register("category", { required: "Category is required" })}
+              className="select select-bordered rounded-md w-full"
+              defaultValue={"Others"}
+            >
+              <option disabled>Choose a category</option>
+              {categories &&
+                categories.map((category: any) =>
+                  !category.is_hide ? (
+                    <option
+                      key={category.category_id}
+                      value={category.category_name}
+                    >
+                      {category.category_name}
+                    </option>
+                  ) : null
+                )}
+            </select>
+            {errors.category && (
+              <span className="text-xs text-red-600">
+                {errors.category?.message}
+              </span>
+            )}
+          </div>
+          <div className="bg-white py-10">
+            <button
+              disabled={isLoading}
+              type="submit"
+              className="w-full btn btn-primary"
+            >
+              Publish
+            </button>
+            <button
+              type="button"
+              className="w-full mt-2 btn bg-gray-600 hover:bg-gray-700"
+              onClick={() =>
+                confirm("Are you cancle writing?") && router.back()
+              }
+            >
+              Cancle
+            </button>
+          </div>
+        </div>
       </form>
     </div>
   );
