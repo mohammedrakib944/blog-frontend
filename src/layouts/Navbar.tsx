@@ -1,11 +1,11 @@
 "use client";
-
 import React, { useEffect } from "react";
 import Image from "next/image";
 import Logo from "@/assets/logo.svg";
 import { MdSearch } from "react-icons/md";
 import { RxAvatar, RxDashboard } from "react-icons/rx";
 import { AiOutlineLogout, AiOutlineArrowRight } from "react-icons/ai";
+import { FiEdit } from "react-icons/fi";
 import { BsPenFill } from "react-icons/bs";
 import Link from "next/link";
 import { useSelector } from "react-redux";
@@ -29,19 +29,25 @@ const Navbar = () => {
           <Image className="w-8" src={Logo} alt="Tech" />
           <h3>Techr</h3>
         </Link>
-        <div className="col-span-5 bg-gray-100 overflow-hidden flex w-full max-w-[600px] rounded-lg">
+        <div className="col-span-5 border border-gray-100 shadow-sm hover:shadow-md overflow-hidden flex w-full max-w-[350px] rounded-lg">
           <input
             className="w-full bg-transparent py-2 px-4 focus:outline-none text-sm"
             type="text"
             placeholder="Search..."
           />
-          <div className="grid place-items-center border-l  text-lg px-3">
+          <div className="grid place-items-center border-l border-gray-100  text-lg px-3">
             <MdSearch />
           </div>
         </div>
-        <div className="col-span-2">
+        <div className="col-span-2 flex items-center gap-4 lg:gap-10 justify-end">
+          <Link
+            href="/write"
+            className="flex items-center gap-2 text-xl text-gray-600 hover:text-gray-900"
+          >
+            <FiEdit /> <span className="text-sm">Write</span>
+          </Link>
           {User ? (
-            <div className="float-right dropdown dropdown-hover  dropdown-end">
+            <div className="dropdown dropdown-hover  dropdown-end">
               <div tabIndex={0} className="h-[35px] m-1">
                 <img
                   src={User?.photo || "/avatar.jpg"}

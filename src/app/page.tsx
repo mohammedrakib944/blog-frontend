@@ -5,13 +5,12 @@ import TopPostCard from "@/components/home/TopPostCard";
 import Scklaton from "@/components/home/PostsScklaton";
 import Link from "next/link";
 import { AiOutlineArrowRight } from "react-icons/ai";
-import {
-  useGetFeaturedPostQuery,
-  useGetAllPostsQuery,
-} from "@/redux/features/post/postApi";
+import { useGetAllPostsQuery } from "@/redux/features/post/postApi";
+import Popular from "@/components/home/Popular";
+import { useGetTopAuthorsQuery } from "@/redux/features/post/postApi";
 
 export default function Home() {
-  const { data: featured_posts } = useGetFeaturedPostQuery(null);
+  const { data: top_authors } = useGetTopAuthorsQuery(null);
   const { data: all_posts } = useGetAllPostsQuery(
     { page: 0 },
     {
@@ -24,11 +23,12 @@ export default function Home() {
       <div className="col-span-3 order-2 lg:order-1 h-fit lg:sticky top-[68px]">
         <p className="p-3 font-bold">Top Authors</p>
         <div className=" bg-white rounded-md border mt-1">
-          <AuthorCard border={true} />
-          <AuthorCard border={true} />
-          <AuthorCard border={true} />
-          <AuthorCard border={true} />
-          <AuthorCard />
+          {top_authors?.map((author: any, index: number) => (
+            <AuthorCard
+              author={author}
+              border={index < top_authors.length - 1}
+            />
+          ))}
         </div>
         <div>
           <p className="mt-2 p-3 font-bold">Tags</p>
@@ -37,18 +37,7 @@ export default function Home() {
       </div>
 
       <div className="col-span-7 order-1 lg:order-2">
-        <div>
-          <h4 className="border-b pr-4 mt-3 px-5 md:px-10 pb-4">
-            Popular Articles
-          </h4>
-          {featured_posts ? (
-            featured_posts.map((post: any) => (
-              <TopPostCard key={post.post_id} post={post} />
-            ))
-          ) : (
-            <Scklaton />
-          )}
-        </div>
+        <Popular />
         <div>
           <h4 className="mt-6 pb-4 pt-3 md:px-10">Latest Articles</h4>
           <div className="mt-3 border-t">
@@ -57,7 +46,9 @@ export default function Home() {
                 <TopPostCard key={post.post_id} post={post} />
               ))
             ) : (
-              <Scklaton />
+              <div className="mt-8">
+                <Scklaton />
+              </div>
             )}
             <br />
             <br />

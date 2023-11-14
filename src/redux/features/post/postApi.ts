@@ -23,6 +23,13 @@ const postApi = apiSlice.injectEndpoints({
       }),
     }),
 
+    // Top 10 authors
+    getTopAuthors: builder.query({
+      query: () => ({
+        url: "/post/top_authors",
+      }),
+    }),
+
     // get posts by user_id
     getPostsByUserId: builder.query({
       query: (id) => ({
@@ -36,5 +43,6 @@ export const {
   useCreatePostMutation,
   useGetPostsByUserIdQuery,
   useGetAllPostsQuery,
+  useGetTopAuthorsQuery,
   useGetFeaturedPostQuery,
 } = postApi;

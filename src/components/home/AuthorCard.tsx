@@ -1,19 +1,27 @@
 import React from "react";
+import Link from "next/link";
 
-const AuthorCard = ({ border }: { border?: boolean }) => {
+const AuthorCard = ({ author, border }: any) => {
   return (
     <ul className={border ? "p-3 border-b " : "p-3"}>
-      <li className="flex gap-2">
-        <img
-          src="/avatar.jpg"
-          className="w-10 h-10 object-cover rounded-full"
-        />
+      <li className="flex items-center gap-2">
+        <Link href={`/profile/${author?.user_id}`}>
+          <img
+            src={author?.photo || "/avatar.jpg"}
+            className="w-10 h-10 object-cover rounded-full"
+          />
+        </Link>
         <div>
-          <p className="font-semibold text-sm hover:text-primary cursor-pointer">
-            Shariar Hossain Sun
-          </p>
+          <Link href={`/profile/${author?.user_id}`}>
+            <p className="font-semibold text-sm hover:text-primary cursor-pointer">
+              {author?.name}{" "}
+              <span className="text-xs font-light text-neutral">
+                - {author?.total_view_count} Views
+              </span>
+            </p>
+          </Link>
           <p className="flex items-center gap-1 text-neutral text-xs">
-            Programmer
+            {author?.occupation}
           </p>
         </div>
       </li>

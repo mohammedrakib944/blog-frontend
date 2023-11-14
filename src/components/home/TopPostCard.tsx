@@ -24,7 +24,7 @@ const TopPostCard = ({ post }: any) => {
 
   return (
     <div className="flex gap-2 border-b py-5 pl-2 pr-5 md:px-10">
-      <div className="w-[50px] md:min-w-[100px]">
+      <div className="min-w-[50px] md:min-w-[100px]">
         <Link href={`/profile/${post?.user_id}`}>
           <img
             src={post?.photo || "/avatar.jpg"}
@@ -43,7 +43,7 @@ const TopPostCard = ({ post }: any) => {
             {post?.date && format(parseISO(post?.date), "dd MMM yyyy")}
           </span>
         </div>
-        <Link href="/article/what-the-article">
+        <Link href={`/article/${post?.slug}`}>
           <h4 className="mb-1 hover:text-primary">{post?.title}</h4>
         </Link>
         <div className="text-sm text-neutral">{plainTextContent}</div>
