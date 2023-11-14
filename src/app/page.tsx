@@ -8,6 +8,8 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 import { useGetAllPostsQuery } from "@/redux/features/post/postApi";
 import Popular from "@/components/home/Popular";
 import { useGetTopAuthorsQuery } from "@/redux/features/post/postApi";
+import AuthorScklaton from "@/components/home/AuthorScklaton";
+import TagsScklaton from "@/components/home/TagsScklaton";
 
 export default function Home() {
   const { data: top_authors } = useGetTopAuthorsQuery(null);
@@ -23,15 +25,20 @@ export default function Home() {
       <div className="col-span-3 order-2 lg:order-1 h-fit lg:sticky top-[68px]">
         <p className="p-3 font-bold">Top Authors</p>
         <div className=" bg-white rounded-md border mt-1">
-          {top_authors?.map((author: any, index: number) => (
-            <AuthorCard
-              author={author}
-              border={index < top_authors.length - 1}
-            />
-          ))}
+          {top_authors ? (
+            top_authors.map((author: any, index: number) => (
+              <AuthorCard
+                author={author}
+                border={index < top_authors.length - 1}
+              />
+            ))
+          ) : (
+            <AuthorScklaton />
+          )}
         </div>
         <div>
           <p className="mt-2 p-3 font-bold">Tags</p>
+          {/* <TagsScklaton /> */}
           <Categories />
         </div>
       </div>
