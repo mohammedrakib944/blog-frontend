@@ -4,10 +4,11 @@ import dynamic from "next/dynamic";
 import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { useGetAllCategoriesQuery } from "@/redux/features/category/categoryApi";
-import { useCreatePostMutation } from "@/redux/features/post/postApi";
+import { useUpdatePostMutation } from "@/redux/features/post/postApi";
 import { useSelector } from "react-redux";
 import { FaBackward } from "react-icons/fa";
 import { FaCloudUploadAlt } from "react-icons/fa";
+import { useGetPostBySlugQuery } from "@/redux/features/post/postApi";
 
 // Editor
 // import "react-quill/dist/quill.snow.css";
@@ -39,12 +40,15 @@ function imageHandler(this: any) {
 }
 
 // Main component
-const Write = () => {
+const EditArticle = ({ params: { slug } }: { params: { slug: string } }) => {
   const router = useRouter();
+  const { data: Post } = useGetPostBySlugQuery(slug, {
+    refetchOnMountOrArgChange: false,
+  });
+  const [updatePost, { isLoading, isSuccess, isError }] =
+    useUpdatePostMutation();
   const { User } = useSelector((state: any) => state.user);
   const { data: categories } = useGetAllCategoriesQuery(null);
-  const [createPost, { isLoading, isSuccess, isError }] =
-    useCreatePostMutation();
 
   const [content, setContent] = useState("");
   const [tags, setTags] = useState<string[]>([]);
@@ -71,7 +75,8 @@ const Write = () => {
     },
   };
 
-  const handleFormSubmit = () => {
+  const handleUpdatePost = () => {
+    if (!Post) return toast.error("Post not found");
     if (!User) return toast.error("You must login to create post");
     if (!content || !title) return toast.error("Content,Title is required");
     if (!tags.length) {
@@ -84,23 +89,30 @@ const Write = () => {
       tags: tags.join(","),
       content: content,
       category: category,
-      user_id: User.user_id,
     };
-    createPost(sendingData);
+    updatePost({ id: Post.post_id, data: sendingData });
   };
+
+  useEffect(() => {
+    if (Post && User) {
+      // if post author and logged user is not same then back
+      if (Post?.author.user_id !== User.user_id) return router.back();
+
+      setContent(Post.content);
+      setTitle(Post.title);
+      setCoverImage(Post.cover_image);
+      setTags(Post.tags.split(","));
+      setCategory(Post.category);
+    }
+  }, [Post, User]);
 
   // Handle response
   useEffect(() => {
     if (isSuccess) {
-      toast.success("Create post successfully");
-      setContent("");
-      setTitle("");
-      setCoverImage("");
-      setTags([]);
-      setCategory("");
+      toast.success("Post update success");
     }
     if (isError) {
-      toast.error("Create post failed");
+      toast.error("Post update failed");
     }
   }, [isSuccess, isError]);
 
@@ -112,17 +124,17 @@ const Write = () => {
           <button
             type="button"
             className="btn btn-sm bg-gray-600 hover:bg-gray-700"
-            onClick={() => confirm("Are you cancle writing?") && router.back()}
+            onClick={() => router.back()}
           >
             <FaBackward /> Back
           </button>
           <button
             disabled={isLoading}
-            onClick={handleFormSubmit}
+            onClick={handleUpdatePost}
             type="submit"
             className="btn bg-green-500 hover:bg-green-700 btn-sm"
           >
-            Publish <FaCloudUploadAlt />
+            Update <FaCloudUploadAlt />
           </button>
         </div>
 
@@ -190,4 +202,4 @@ const Write = () => {
   );
 };
 
-export default Write;
+export default EditArticle;

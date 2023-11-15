@@ -3,6 +3,9 @@ import React, { useState, useEffect } from "react";
 import { AiFillEye } from "react-icons/ai";
 import Link from "next/link";
 import { format, parseISO } from "date-fns";
+import { CiEdit } from "react-icons/ci";
+import { useSelector } from "react-redux";
+import { MdDeleteOutline } from "react-icons/md";
 
 function stripHTMLTags(html: any) {
   const doc = new DOMParser().parseFromString(html, "text/html");
@@ -13,7 +16,9 @@ function truncateText(text: any, maxLength: number) {
   return text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
 }
 
+// Main component
 const TopPostCard = ({ post }: any) => {
+  const { User } = useSelector((state: any) => state.user);
   const [plainTextContent, setPlainTextContent] = useState("");
 
   useEffect(() => {
@@ -34,14 +39,31 @@ const TopPostCard = ({ post }: any) => {
         </Link>
       </div>
       <div>
-        <div className="text-sm pb-2">
-          <Link href={`/profile/${post?.user_id}`} className="pr-4">
-            <span className="text-primary font-bold">{post?.name}</span>
-          </Link>
+        <div className="flex justify-between items-center text-sm pb-2">
+          <div>
+            <Link href={`/profile/${post?.user_id}`} className="pr-4">
+              <span className="text-primary font-bold">{post?.name}</span>
+            </Link>
 
-          <span className="text-neutral">
-            {post?.date && format(parseISO(post?.date), "dd MMM yyyy")}
-          </span>
+            <span className="text-neutral">
+              {post?.date && format(parseISO(post?.date), "dd MMM yyyy")}
+            </span>
+          </div>
+
+          {User?.user_id === post?.user_id && (
+            <div>
+              <button className="ml-6 mr-2 tooltip" data-tip="Delete Post">
+                <MdDeleteOutline />
+              </button>
+              <Link
+                href={`/write/${post?.slug}`}
+                className="text-neutral ml-2 tooltip"
+                data-tip="Edit Post"
+              >
+                <CiEdit />
+              </Link>
+            </div>
+          )}
         </div>
         <Link href={`/article/${post?.slug}`}>
           <h4 className="mb-1 hover:text-primary">{post?.title}</h4>

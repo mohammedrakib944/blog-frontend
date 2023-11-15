@@ -73,7 +73,7 @@ const page = async ({ params: { slug } }: { params: { slug: string } }) => {
         ) : (
           ""
         )}
-        <div className="mb-3 first-letter:text-5xl first-letter:font-extrabold first-letter:text-blue-500 first-letter:pr-2 first-letter:float-left">
+        <div className="mb-3">
           <div dangerouslySetInnerHTML={{ __html: Article?.content }} />
         </div>
         <br />

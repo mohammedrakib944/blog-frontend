@@ -9,7 +9,6 @@ import { useGetAllPostsQuery } from "@/redux/features/post/postApi";
 import Popular from "@/components/home/Popular";
 import { useGetTopAuthorsQuery } from "@/redux/features/post/postApi";
 import AuthorScklaton from "@/components/home/AuthorScklaton";
-import TagsScklaton from "@/components/home/TagsScklaton";
 
 export default function Home() {
   const { data: top_authors } = useGetTopAuthorsQuery(null);
@@ -28,6 +27,7 @@ export default function Home() {
           {top_authors ? (
             top_authors.map((author: any, index: number) => (
               <AuthorCard
+                key={author.user_id}
                 author={author}
                 border={index < top_authors.length - 1}
               />
@@ -38,7 +38,6 @@ export default function Home() {
         </div>
         <div>
           <p className="mt-2 p-3 font-bold">Tags</p>
-          {/* <TagsScklaton /> */}
           <Categories />
         </div>
       </div>

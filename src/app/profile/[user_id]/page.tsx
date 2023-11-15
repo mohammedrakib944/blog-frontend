@@ -51,7 +51,7 @@ const page = ({ params }: { params: { user_id: number } }) => {
                 </h4>
                 {loggedInUser?.user_id === User?.user_id && (
                   <Link
-                    href={`/profile-update/${User?.user_id}`}
+                    href={`/profile-update`}
                     className="tooltip hover:text-primary"
                     data-tip="Update Profile"
                   >

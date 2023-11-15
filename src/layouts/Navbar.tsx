@@ -5,6 +5,7 @@ import Logo from "@/assets/logo.svg";
 import { MdSearch } from "react-icons/md";
 import { RxAvatar, RxDashboard } from "react-icons/rx";
 import { AiOutlineLogout, AiOutlineArrowRight } from "react-icons/ai";
+import { IoSettingsOutline } from "react-icons/io5";
 import { FiEdit } from "react-icons/fi";
 import { BsPenFill } from "react-icons/bs";
 import Link from "next/link";
@@ -66,7 +67,12 @@ const Navbar = () => {
                 </li>
                 <li>
                   <Link href={`/profile/${User?.user_id}`}>
-                    <RxAvatar /> Profie
+                    <RxAvatar /> Profile
+                  </Link>
+                </li>
+                <li>
+                  <Link href={`/profile-update`}>
+                    <IoSettingsOutline /> Update Profile
                   </Link>
                 </li>
                 <li>
