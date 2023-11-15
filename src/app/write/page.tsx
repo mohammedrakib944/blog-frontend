@@ -2,14 +2,17 @@
 import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import toast, { Toaster } from "react-hot-toast";
-import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useGetAllCategoriesQuery } from "@/redux/features/category/categoryApi";
 import { useCreatePostMutation } from "@/redux/features/post/postApi";
 import { useSelector } from "react-redux";
+import { FaBackward } from "react-icons/fa";
+import { FaCloudUploadAlt } from "react-icons/fa";
 
 // Editor
-import "react-quill/dist/quill.snow.css";
+// import "react-quill/dist/quill.snow.css";
+import "react-quill/dist/quill.bubble.css";
+import Tags from "@/components/common/Tags";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 // Image handler
@@ -40,19 +43,19 @@ type Inputs = {
   category: string;
 };
 
+// Main component
 const Write = () => {
   const router = useRouter();
   const { User } = useSelector((state: any) => state.user);
   const { data: categories } = useGetAllCategoriesQuery(null);
   const [createPost, { isLoading, isSuccess, isError }] =
     useCreatePostMutation();
+
   const [content, setContent] = useState("");
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<Inputs>();
+  const [tags, setTags] = useState<string[]>([]);
+  const [title, setTitle] = useState("");
+  const [coverImage, setCoverImage] = useState("");
+  const [category, setCategory] = useState("");
 
   const toolbarOptions = [
     [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -73,23 +76,33 @@ const Write = () => {
     },
   };
 
-  const handleFormSubmit: SubmitHandler<Inputs> = (data) => {
+  const handleFormSubmit = () => {
     if (!User) return toast.error("You must login to create post");
+    if (!content) return toast.error("Content is required");
+
+    if (!tags.length) {
+      if (!confirm("Are you sure you don't want to add any tags?")) return;
+    }
+
+    console.log("Tags: ", tags.join(","));
+
     const sendingData = {
-      ...data,
       content: content,
       user_id: User.user_id,
     };
 
-    createPost(sendingData);
+    // createPost(sendingData);
   };
 
   // Handle response
   useEffect(() => {
     if (isSuccess) {
       toast.success("Create post successfully");
-      reset();
       setContent("");
+      setTitle("");
+      setCoverImage("");
+      setTags([]);
+      setCategory("");
     }
     if (isError) {
       toast.error("Create post failed");
@@ -99,92 +112,88 @@ const Write = () => {
   return (
     <div className="homeLayout min-h-screen p-3">
       <Toaster />
-      <form
-        className="mt-5 flex flex-col md:flex-row gap-5"
-        onSubmit={handleSubmit(handleFormSubmit)}
-      >
-        <div className="w-full border-r pr-5">
-          <input
-            type="text"
-            placeholder="Title..."
-            {...register("title", {
-              required: "Title is required",
-            })}
-            className="w-full text-5xl font-semibold outline-none mt-2"
-          />
-          {errors.title && (
-            <span className="text-xs text-red-600 pl-3">
-              {errors.title?.message}
-            </span>
-          )}
-          <br />
-          <br />
-          <ReactQuill
-            value={content}
-            placeholder="Article description ..."
-            modules={module}
-            onChange={setContent}
-          />
+      <div className="">
+        <div className="bg-white pb-3 mb-3 flex justify-between border-b">
+          <button
+            type="button"
+            className="btn btn-sm bg-gray-600 hover:bg-gray-700"
+            onClick={() => confirm("Are you cancle writing?") && router.back()}
+          >
+            <FaBackward /> Back
+          </button>
+          <button
+            disabled={isLoading}
+            onClick={handleFormSubmit}
+            type="submit"
+            className="btn bg-green-500 hover:bg-green-700 btn-sm"
+          >
+            Publish <FaCloudUploadAlt />
+          </button>
         </div>
-        <div className="min-w-[300px]">
-          <p className="text-sm mb-2 font-semibold text-gray-500">
-            Cover image URL
-          </p>
-          <div className="flex items-center justify-between gap-4">
+
+        <div className="flex flex-col md:flex-row gap-5">
+          <div className="w-full border-r pr-5">
             <input
               type="text"
-              placeholder="Cover Image URL"
-              {...register("cover_image")}
-              className="w-full border-2 rounded-full px-4 py-2 text-sm outline-primary"
+              placeholder="Title..."
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className="w-full text-4xl p-2 font-semibold outline-none mt-2"
+            />
+            <br />
+            <ReactQuill
+              value={content}
+              placeholder="Write here ..."
+              modules={module}
+              onChange={setContent}
+              theme="bubble"
             />
           </div>
+          <div className="md:min-w-[400px] md:max-w-[400px]">
+            <p className="text-sm mb-2 font-semibold text-gray-500">
+              Cover image URL
+            </p>
+            <div className="flex items-center justify-between gap-4">
+              <input
+                type="text"
+                value={coverImage}
+                onChange={(e) => setCoverImage(e.target.value)}
+                placeholder="Cover Image URL"
+                className="w-full border-2 rounded-full px-4 py-2 text-sm outline-primary"
+              />
+            </div>
 
-          <div className="mt-4">
-            <p className="text-sm mb-2 font-semibold text-gray-500">Category</p>
-            <select
-              {...register("category", { required: "Category is required" })}
-              className="select select-bordered rounded-md w-full"
-              defaultValue={"Others"}
-            >
-              <option disabled>Choose a category</option>
-              {categories &&
-                categories.map((category: any) =>
-                  !category.is_hide ? (
-                    <option
-                      key={category.category_id}
-                      value={category.category_name}
-                    >
-                      {category.category_name}
-                    </option>
-                  ) : null
-                )}
-            </select>
-            {errors.category && (
-              <span className="text-xs text-red-600">
-                {errors.category?.message}
-              </span>
-            )}
-          </div>
-          <div className="bg-white py-10">
-            <button
-              disabled={isLoading}
-              type="submit"
-              className="w-full btn btn-primary"
-            >
-              Publish
-            </button>
-            <button
-              type="button"
-              className="w-full mt-2 btn bg-gray-600 hover:bg-gray-700"
-              onClick={() =>
-                confirm("Are you cancle writing?") && router.back()
-              }
-            >
-              Cancle
-            </button>
+            <div className="mt-4">
+              <p className="text-sm mb-2 font-semibold text-gray-500">
+                Category
+              </p>
+              <select
+                value={category}
+                className="select select-bordered rounded-full w-full"
+                onChange={(e) => setCategory(e.target.value)}
+                defaultValue="Choose a category"
+              >
+                <option value="Choose a category" disabled>
+                  Choose a category
+                </option>
+                {categories &&
+                  categories.map((category: any) =>
+                    !category.is_hide ? (
+                      <option
+                        key={category.category_id}
+                        value={category.category_name}
+                      >
+                        {category.category_name}
+                      </option>
+                    ) : null
+                  )}
+              </select>
+            </div>
+
+            <Tags tags={tags} setTags={setTags} />
           </div>
         </div>
-      </form>
+      </div>
     </div>
   );
 };

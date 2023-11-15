@@ -59,13 +59,15 @@ export default function Home() {
             )}
             <br />
             <br />
-            <div className="pl-10 mb-10">
-              <Link href={`/page/${1}`}>
-                <button className="btn btn-sm">
-                  Next Page <AiOutlineArrowRight />
-                </button>
-              </Link>
-            </div>
+            {all_posts && (
+              <div className="pl-10 mb-10">
+                <Link href={`/page/${1}`}>
+                  <button className="btn btn-sm">
+                    Next Page <AiOutlineArrowRight />
+                  </button>
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </div>

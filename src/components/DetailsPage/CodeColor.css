@@ -1,0 +1,9 @@
+.ql-syntax {
+  background: radial-gradient(#032c10, #000000);
+  color: #34ffb5;
+  font-size: 14px;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px 0;
+  font-family: monospace;
+}

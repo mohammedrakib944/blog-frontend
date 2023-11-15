@@ -42,7 +42,7 @@ const Navbar = () => {
         <div className="col-span-2 flex items-center gap-4 lg:gap-10 justify-end">
           <Link
             href="/write"
-            className="flex items-center gap-2 text-xl text-gray-600 hover:text-gray-900"
+            className="flex items-center gap-2 text-xl text-gray-500 hover:text-gray-900"
           >
             <FiEdit /> <span className="text-sm">Write</span>
           </Link>

@@ -14,10 +14,7 @@ const AuthorCard = ({ author, border }: any) => {
         <div>
           <Link href={`/profile/${author?.user_id}`}>
             <p className="font-semibold text-sm hover:text-primary cursor-pointer">
-              {author?.name}{" "}
-              <span className="text-xs font-light text-neutral">
-                - {author?.total_view_count} Views
-              </span>
+              {author?.name}
             </p>
           </Link>
           <p className="flex items-center gap-1 text-neutral text-xs">

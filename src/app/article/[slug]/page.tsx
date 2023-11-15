@@ -1,3 +1,4 @@
+import "@/components/DetailsPage/CodeColor.css";
 import React from "react";
 import Link from "next/link";
 import TopPostCard from "@/components/home/TopPostCard";
@@ -30,15 +31,13 @@ const page = async ({ params: { slug } }: { params: { slug: string } }) => {
   const Article = await getArticle(slug);
   const PoularArticles = await popularArticles();
 
-  const codeSnippetRegex = /<code\s*class="language-(\w+)">([\s\S]*?)<\/code>/g;
-
   return (
     <div className="max-w-[700px] mx-auto px-4">
       <h1 className="mb-3 font-extrabold mt-8 lg:mt-12">{Article?.title}</h1>
       <p className="text-primary text-sm hover:underline font-bold mb-2">
         {Article?.category}
       </p>
-      <div className="mt-4 mb-8 flex items-center justify-between border-b pb-5 pt-3">
+      <div className="mt-4 mb-6 flex items-center justify-between border-b pb-5 pt-3">
         <div className="flex items-center gap-3">
           <Link href={`/profile/${Article?.author?.user_id}`}>
             <img

@@ -28,25 +28,27 @@ const page = ({ params }: { params: { page_number: number } }) => {
           <TopPostCard key={post.post_id} post={post} />
         ))}
 
-      <div className="flex gap-3 px-12 mt-10 mb-20">
-        {page_number > 0 && (
-          <Link href={`/page/${Number(page_number) - 1}`}>
-            <button className="btn btn-sm">
-              <AiOutlineArrowLeft /> Previous Page
-            </button>
-          </Link>
-        )}
+      {all_posts && (
+        <div className="flex gap-3 px-12 mt-10 mb-20">
+          {page_number > 0 && (
+            <Link href={`/page/${Number(page_number) - 1}`}>
+              <button className="btn btn-sm">
+                <AiOutlineArrowLeft /> Previous Page
+              </button>
+            </Link>
+          )}
 
-        {all_posts?.length < 20 ? (
-          ""
-        ) : (
-          <Link href={`/page/${Number(page_number) + 1}`}>
-            <button className="btn btn-sm">
-              Next Page <AiOutlineArrowRight />
-            </button>
-          </Link>
-        )}
-      </div>
+          {all_posts?.length < 20 ? (
+            ""
+          ) : (
+            <Link href={`/page/${Number(page_number) + 1}`}>
+              <button className="btn btn-sm">
+                Next Page <AiOutlineArrowRight />
+              </button>
+            </Link>
+          )}
+        </div>
+      )}
     </div>
   );
 };
