@@ -1,5 +1,4 @@
 "use client";
-import { useState, useEffect } from "react";
 import { AiOutlineArrowRight, AiOutlineArrowLeft } from "react-icons/ai";
 import { useGetAllPostsQuery } from "@/redux/features/post/postApi";
 import TopPostCard from "@/components/home/TopPostCard";

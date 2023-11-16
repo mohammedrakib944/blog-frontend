@@ -8,7 +8,6 @@ import { useCreatePostMutation } from "@/redux/features/post/postApi";
 import { useSelector } from "react-redux";
 import { FaBackward } from "react-icons/fa";
 import { FaCloudUploadAlt } from "react-icons/fa";
-
 // Editor
 // import "react-quill/dist/quill.snow.css";
 import "react-quill/dist/quill.bubble.css";

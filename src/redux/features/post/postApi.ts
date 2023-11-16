@@ -53,6 +53,12 @@ const postApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Post"],
     }),
+    // search posts
+    searchPost: builder.query({
+      query: (keyword) => ({
+        url: `/post/search?keyword=${keyword}`,
+      }),
+    }),
   }),
 });
 
@@ -60,6 +66,7 @@ export const {
   useGetPostBySlugQuery,
   useUpdatePostMutation,
   useCreatePostMutation,
+  useSearchPostQuery,
   useGetPostsByUserIdQuery,
   useGetAllPostsQuery,
   useGetTopAuthorsQuery,
