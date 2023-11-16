@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Link from "next/link";
 import TagsScklaton from "./TagsScklaton";
 import { useGetAllCategoriesQuery } from "@/redux/features/category/categoryApi";
 
@@ -14,9 +15,12 @@ const Categories = () => {
               {category.is_hide ? (
                 ""
               ) : (
-                <button className="btn btn-sm border-accent hover:bg-gray-100 bg-white text-black ">
+                <Link
+                  href="/search"
+                  className="btn btn-sm border-accent hover:bg-gray-100 bg-white text-black "
+                >
                   {category.category_name}
-                </button>
+                </Link>
               )}
             </React.Fragment>
           ))}

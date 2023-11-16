@@ -102,7 +102,7 @@ const Navbar = () => {
             </div>
           ) : (
             <Link href="/sign-in">
-              <button className="btn btn-sm bg-black hover:bg-black/70 float-right">
+              <button className="min-w-[74px] btn btn-sm bg-black hover:bg-black/70 float-right">
                 Sign in
                 <span className="hidden md:block">
                   <AiOutlineArrowRight />
