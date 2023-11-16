@@ -1,11 +1,13 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { AiFillEye } from "react-icons/ai";
 import Link from "next/link";
+import React, { useState, useEffect } from "react";
+import toast, { Toaster } from "react-hot-toast";
+import { AiFillEye } from "react-icons/ai";
 import { format, parseISO } from "date-fns";
 import { CiEdit } from "react-icons/ci";
 import { useSelector } from "react-redux";
 import { MdDeleteOutline } from "react-icons/md";
+import { useDeletePostMutation } from "@/redux/features/post/postApi";
 
 function stripHTMLTags(html: any) {
   const doc = new DOMParser().parseFromString(html, "text/html");
@@ -20,6 +22,20 @@ function truncateText(text: any, maxLength: number) {
 const TopPostCard = ({ post }: any) => {
   const { User } = useSelector((state: any) => state.user);
   const [plainTextContent, setPlainTextContent] = useState("");
+  const [deletePost, { isLoading: deleting, isSuccess: deleted }] =
+    useDeletePostMutation();
+
+  const handleDelete = (post_id: number) => {
+    if (!User) return toast.error("Please login to delete post");
+    if (!confirm("Are you sure you want to delete this post?")) return;
+    deletePost(post_id);
+  };
+
+  useEffect(() => {
+    if (!deleting && deleted) {
+      toast.success("Post deleted successfully");
+    }
+  }, [deleted, deleting]);
 
   useEffect(() => {
     const plainTextContent = stripHTMLTags(post?.content);
@@ -29,6 +45,7 @@ const TopPostCard = ({ post }: any) => {
 
   return (
     <div className="flex gap-2 border-b py-5 pl-2 pr-5 md:px-10">
+      <Toaster />
       <div className="min-w-[50px] md:min-w-[100px]">
         <Link href={`/profile/${post?.user_id}`}>
           <img
@@ -52,7 +69,12 @@ const TopPostCard = ({ post }: any) => {
 
           {User?.user_id === post?.user_id && (
             <div>
-              <button className="ml-6 mr-2 tooltip" data-tip="Delete Post">
+              <button
+                disabled={deleting}
+                onClick={() => handleDelete(post?.post_id)}
+                className="ml-6 mr-2 tooltip"
+                data-tip="Delete Post"
+              >
                 <MdDeleteOutline />
               </button>
               <Link

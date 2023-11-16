@@ -59,6 +59,23 @@ const postApi = apiSlice.injectEndpoints({
         url: `/post/search?keyword=${keyword}`,
       }),
     }),
+
+    // view count
+    viewCount: builder.mutation({
+      query: (id: number) => ({
+        url: `/post/view/${id}`,
+        method: "PATCH",
+      }),
+    }),
+
+    // delete post by post id
+    deletePost: builder.mutation({
+      query: (id) => ({
+        url: `/post/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Post"],
+    }),
   }),
 });
 
@@ -71,4 +88,6 @@ export const {
   useGetAllPostsQuery,
   useGetTopAuthorsQuery,
   useGetFeaturedPostQuery,
+  useViewCountMutation,
+  useDeletePostMutation,
 } = postApi;

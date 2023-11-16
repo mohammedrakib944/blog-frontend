@@ -5,7 +5,7 @@ import TopPostCard from "@/components/home/TopPostCard";
 import { notFound } from "next/navigation";
 import { API_URL } from "@/redux/features/api/apiSlice";
 import { format, parseISO } from "date-fns";
-import ViewLike from "@/components/DetailsPage/ViewLike";
+import ViewComment from "@/components/DetailsPage/ViewComment";
 
 // Get articlel from server
 async function getArticle(slug: string) {
@@ -74,11 +74,13 @@ const page = async ({ params: { slug } }: { params: { slug: string } }) => {
           ""
         )}
         <div className="mb-3">
-          <div dangerouslySetInnerHTML={{ __html: Article?.content }} />
+          {Article && (
+            <div dangerouslySetInnerHTML={{ __html: Article?.content }} />
+          )}
         </div>
         <br />
       </div>
-      <ViewLike Article={Article} />
+      <ViewComment Article={Article} />
       <div className="h-[50px]"></div>
       <div>
         <h4 className="border-b pr-4 mt-3 px-5 md:px-10 pb-4">

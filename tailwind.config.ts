@@ -17,7 +17,7 @@ const config: Config = {
           neutral: "#717066",
           "base-100": "#FFFFFF",
           info: "#58a6ff",
-          success: "#21e205",
+          success: "#00d600",
           warning: "#ef4444",
           error: "#21262d",
         },
