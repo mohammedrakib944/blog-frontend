@@ -32,10 +32,13 @@ const Search = ({ params }: { params: { query_search: string } }) => {
 
   useEffect(() => {
     if (searchData) dispatch(setSearchPosts(searchData));
-    if (params.query_search) {
+  }, [searchData]);
+
+  useEffect(() => {
+    if (params.query_search && searchText === "") {
       if (!params.query_search.includes("~")) setKeyword(params.query_search);
     }
-  }, [searchData, params.query_search]);
+  }, [params.query_search]);
 
   return (
     <div className="max-w-[800px] min-h-screen mx-auto px-3">
@@ -103,7 +106,7 @@ const Search = ({ params }: { params: { query_search: string } }) => {
       )}
 
       {searchData && (
-        <div className="border-b pr-4 mt-5 px-5 md:px-10 pb-4">
+        <div className="border-b pr-4 mt-5 px-5 md:px-11 pb-4">
           Results for <span className="font-bold">"{keyword}"</span>
         </div>
       )}
