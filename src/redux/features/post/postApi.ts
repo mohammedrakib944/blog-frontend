@@ -2,13 +2,12 @@ import { apiSlice } from "../api/apiSlice";
 
 const postApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    // createPost
-    createPost: builder.mutation({
-      query: (data) => ({
-        url: "/post",
-        method: "POST",
-        body: data,
+    // dashboard data
+    dashboardData: builder.query({
+      query: () => ({
+        url: "/post/dashboard",
       }),
+      providesTags: ["Dashboard"],
     }),
     // get all posts
     getAllPosts: builder.query({
@@ -16,6 +15,15 @@ const postApi = apiSlice.injectEndpoints({
         url: `/post/page/${page}`,
       }),
       providesTags: ["Post"],
+    }),
+    // createPost
+    createPost: builder.mutation({
+      query: (data) => ({
+        url: "/post",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["Post", "Dashboard"],
     }),
     // get featured posts - 3 posts
     getFeaturedPost: builder.query({
@@ -74,12 +82,13 @@ const postApi = apiSlice.injectEndpoints({
         url: `/post/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["Post"],
+      invalidatesTags: ["Post", "Dashboard"],
     }),
   }),
 });
 
 export const {
+  useDashboardDataQuery,
   useGetPostBySlugQuery,
   useUpdatePostMutation,
   useCreatePostMutation,

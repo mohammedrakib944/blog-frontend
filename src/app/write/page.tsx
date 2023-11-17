@@ -112,7 +112,7 @@ const Write = () => {
           <button
             type="button"
             className="btn btn-sm bg-gray-600 hover:bg-gray-700"
-            onClick={() => confirm("Are you cancle writing?") && router.back()}
+            onClick={() => router.back()}
           >
             <FaBackward /> Back
           </button>

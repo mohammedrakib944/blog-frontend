@@ -2,7 +2,6 @@ import React from "react";
 import Image from "next/image";
 import Logo from "@/assets/logo.svg";
 import Link from "next/link";
-import { BsPenFill } from "react-icons/bs";
 
 const Topbar = () => {
   return (
@@ -32,8 +31,8 @@ const Topbar = () => {
               </Link>
             </li>
             <li>
-              <Link className="w-[90px] btn btn-sm" href="/dashboard/write">
-                <BsPenFill /> Write
+              <Link className="w-[100px] btn btn-sm" href="/">
+                Website
               </Link>
             </li>
           </ul>

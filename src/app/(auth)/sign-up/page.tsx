@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Page() {
   return (
-    <div className="w-full h-screen flex items-center justify-center">
+    <div className="w-full h-screen -mt-[150px] flex flex-col gap-4 items-center justify-center">
       <Link href="/" className="cursor-pointer">
         <div className="flex items-center justify-center gap-2 mb-2">
           <img src="/logo.svg" className="w-[80px]" alt="Mohammed Rakib" />

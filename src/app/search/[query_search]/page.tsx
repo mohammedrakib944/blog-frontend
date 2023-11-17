@@ -20,6 +20,7 @@ const Search = ({ params }: { params: { query_search: string } }) => {
     isError,
   } = useSearchPostQuery(keyword, {
     skip: keyword ? false : true,
+    refetchOnMountOrArgChange: true,
   });
   const { data: categories } = useGetAllCategoriesQuery(null);
 
@@ -27,6 +28,7 @@ const Search = ({ params }: { params: { query_search: string } }) => {
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (searchText === "") return;
     setKeyword(searchText);
   };
 
