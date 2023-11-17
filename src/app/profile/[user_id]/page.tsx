@@ -52,7 +52,7 @@ const page = ({ params }: { params: { user_id: number } }) => {
                 {loggedInUser?.user_id === User?.user_id && (
                   <Link
                     href={`/profile-update`}
-                    className="tooltip hover:text-primary"
+                    className="tooltip  tooltip-secondary hover:text-primary"
                     data-tip="Update Profile"
                   >
                     <AiFillEdit />
@@ -67,7 +67,7 @@ const page = ({ params }: { params: { user_id: number } }) => {
                 <div className="flex gap-3 mt-4">
                   {User?.linkedin ? (
                     <Link
-                      className="text-xl hover:text-primary tooltip"
+                      className="text-xl hover:text-primary tooltip  tooltip-secondary"
                       href={User?.linkedin}
                       target="_blank"
                       data-tip="Linkedin"
@@ -80,7 +80,7 @@ const page = ({ params }: { params: { user_id: number } }) => {
 
                   {User?.github ? (
                     <Link
-                      className="text-3xl hover:text-primary tooltip"
+                      className="text-3xl hover:text-primary tooltip  tooltip-secondary"
                       href={User?.github}
                       data-tip="Github"
                       target="_blank"
@@ -98,7 +98,9 @@ const page = ({ params }: { params: { user_id: number } }) => {
           </div>
 
           <br />
-          <h4 className="mt-4">Articles from {User?.name}</h4>
+          <h4 className="mt-4">
+            {User_posts?.length} Articles from {User?.name}
+          </h4>
           <div className="mt-3 mb-10 border-t">
             {User_posts
               ? User_posts.map((post: any) => (

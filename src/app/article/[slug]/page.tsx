@@ -32,7 +32,7 @@ const page = async ({ params: { slug } }: { params: { slug: string } }) => {
   const PoularArticles = await popularArticles();
 
   return (
-    <div className="max-w-[700px] mx-auto px-4">
+    <div className="max-w-[650px] mx-auto px-4">
       <h1 className="mb-3 font-extrabold mt-8 lg:mt-12">{Article?.title}</h1>
       <p className="text-primary text-sm hover:underline font-bold mb-2">
         {Article?.category}
@@ -75,7 +75,10 @@ const page = async ({ params: { slug } }: { params: { slug: string } }) => {
         )}
         <div className="mb-3">
           {Article && (
-            <div dangerouslySetInnerHTML={{ __html: Article?.content }} />
+            <div
+              className="leading-8"
+              dangerouslySetInnerHTML={{ __html: Article?.content }}
+            />
           )}
         </div>
         <br />

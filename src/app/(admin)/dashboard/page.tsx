@@ -57,13 +57,13 @@ const page = () => {
                 <td>Specialist</td>
                 <td className="flex gap-5">
                   <button
-                    className="tooltip hover:text-primary"
+                    className="tooltip tooltip-secondary hover:text-primary"
                     data-tip="Edit"
                   >
                     <FaEdit />
                   </button>
                   <button
-                    className="tooltip hover:text-red-600"
+                    className="tooltip tooltip-secondary hover:text-red-600"
                     data-tip="Delete"
                   >
                     <RxCross2 />

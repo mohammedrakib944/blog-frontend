@@ -12,7 +12,7 @@ const config: Config = {
       {
         blog: {
           primary: "#0094FF",
-          secondary: "#0d1117",
+          secondary: "#032041",
           accent: "#d8d8d8",
           neutral: "#717066",
           "base-100": "#FFFFFF",

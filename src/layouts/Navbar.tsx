@@ -21,7 +21,6 @@ const Navbar = () => {
     signOut();
     window.location.reload();
   };
-
   return (
     <div className="w-full border-b  bg-white z-50 sticky top-0">
       <div className="homeLayout  grid grid-cols-10 px-3 py-2">
@@ -32,15 +31,15 @@ const Navbar = () => {
 
         <div className="col-span-5 pl-4 md:pl-10 flex items-center gap-5 md:gap-10">
           <Link
-            href="/search"
-            className="flex items-center gap-2 text-lg text-gray-500 hover:text-gray-900 tooltip tooltip-bottom"
+            href="/search/~post"
+            className="flex items-center gap-2 text-lg text-gray-500 hover:text-gray-900 tooltip  tooltip-secondary tooltip-bottom"
             data-tip="Search"
           >
             <FiSearch /> <span className="text-sm">Search</span>
           </Link>
           <Link
             href="/write"
-            className="flex items-center gap-2 text-lg text-gray-500 hover:text-gray-900 tooltip tooltip-bottom"
+            className="flex items-center gap-2 text-lg text-gray-500 hover:text-gray-900 tooltip  tooltip-secondary tooltip-bottom"
             data-tip="Write Article"
           >
             <FiEdit /> <span className="text-sm">Write</span>
@@ -86,11 +85,13 @@ const Navbar = () => {
                       <BsPenFill /> Write
                     </Link>
                   </li>
-                  <li>
-                    <Link href="/dashboard">
-                      <RxDashboard /> Dashboard
-                    </Link>
-                  </li>
+                  {User?.role === "admin" && (
+                    <li>
+                      <Link href="/dashboard">
+                        <RxDashboard /> Dashboard
+                      </Link>
+                    </li>
+                  )}
                   <li className="border-t mt-1">
                     <button onClick={handleSignout}>
                       <AiOutlineLogout />

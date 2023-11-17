@@ -68,18 +68,18 @@ const TopPostCard = ({ post }: any) => {
           </div>
 
           {User?.user_id === post?.user_id && (
-            <div>
+            <div className="pt-1">
               <button
                 disabled={deleting}
                 onClick={() => handleDelete(post?.post_id)}
-                className="ml-6 mr-2 tooltip"
+                className="ml-6 mr-2 tooltip  tooltip-secondary"
                 data-tip="Delete Post"
               >
                 <MdDeleteOutline />
               </button>
               <Link
                 href={`/write/${post?.slug}`}
-                className="text-neutral ml-2 tooltip"
+                className="text-neutral ml-2 tooltip  tooltip-secondary"
                 data-tip="Edit Post"
               >
                 <CiEdit />

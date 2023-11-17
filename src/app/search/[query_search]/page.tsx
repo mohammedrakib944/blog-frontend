@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 import { setSearchPosts } from "@/redux/features/post/searchSlice";
 import { useGetAllCategoriesQuery } from "@/redux/features/category/categoryApi";
 
-const Search = () => {
+const Search = ({ params }: { params: { query_search: string } }) => {
   const { Posts } = useSelector((state: any) => state.search);
   const [searchText, setSearchText] = useState("");
   const [keyword, setKeyword] = useState("");
@@ -32,13 +32,16 @@ const Search = () => {
 
   useEffect(() => {
     if (searchData) dispatch(setSearchPosts(searchData));
-  }, [searchData]);
+    if (params.query_search) {
+      if (!params.query_search.includes("~")) setKeyword(params.query_search);
+    }
+  }, [searchData, params.query_search]);
 
   return (
     <div className="max-w-[800px] min-h-screen mx-auto px-3">
       <form
         onSubmit={handleSearch}
-        className="md:mx-10 border mt-5 rounded-md flex h-full items-center shadow-sm hover:shadow-lg"
+        className="md:mx-10 border mt-5 rounded-full flex h-full items-center shadow-sm hover:shadow-lg"
       >
         <input
           className="w-full bg-transparent py-3 px-4 focus:outline-none text-sm"

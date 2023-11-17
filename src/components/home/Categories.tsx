@@ -16,7 +16,7 @@ const Categories = () => {
                 ""
               ) : (
                 <Link
-                  href="/search"
+                  href={`/search/${category.category_name}`}
                   className="btn btn-sm border-accent hover:bg-gray-100 bg-white text-black "
                 >
                   {category.category_name}

@@ -72,7 +72,8 @@ const Write = () => {
 
   const handleFormSubmit = () => {
     if (!User) return toast.error("You must login to create post");
-    if (!content || !title) return toast.error("Content,Title is required");
+    if (!content || !title || !category)
+      return toast.error("Content,Title,Category is required");
     if (!tags.length) {
       return toast.error("Provide some tags for SEO");
     }
@@ -166,7 +167,9 @@ const Write = () => {
                 className="select select-bordered rounded-full w-full"
                 onChange={(e) => setCategory(e.target.value)}
               >
-                <option disabled>Choose a category</option>
+                <option value="" disabled>
+                  Choose a category
+                </option>
                 {categories &&
                   categories.map((category: any) =>
                     !category.is_hide ? (
