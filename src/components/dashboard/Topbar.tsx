@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Logo from "@/assets/logo.svg";
+import { FaAngleRight } from "react-icons/fa";
 import Link from "next/link";
 
 const Topbar = () => {
@@ -31,8 +32,11 @@ const Topbar = () => {
               </Link>
             </li>
             <li>
-              <Link className="w-[100px] btn btn-sm" href="/">
-                Website
+              <Link className="w-[90px] md:w-[105px] btn btn-sm" href="/">
+                Website{" "}
+                <span className="hidden md:block">
+                  <FaAngleRight />
+                </span>
               </Link>
             </li>
           </ul>

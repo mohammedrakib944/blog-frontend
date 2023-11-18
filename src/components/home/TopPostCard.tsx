@@ -28,6 +28,9 @@ const TopPostCard = ({ post }: any) => {
   const handleDelete = (post_id: number) => {
     if (!User) return toast.error("Please login to delete post");
     if (!confirm("Are you sure you want to delete this post?")) return;
+
+    if (User.is_banned) return toast.error("You are banned from this site");
+
     deletePost(post_id);
   };
 

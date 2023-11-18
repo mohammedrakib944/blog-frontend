@@ -83,6 +83,8 @@ const EditArticle = ({ params: { slug } }: { params: { slug: string } }) => {
       return toast.error("Provide some tags for SEO");
     }
 
+    if (User.is_banned) return toast.error("You are banned from this site");
+
     const sendingData = {
       title: title,
       cover_image: coverImage,

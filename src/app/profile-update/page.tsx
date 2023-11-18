@@ -35,11 +35,9 @@ const UpdateProfile = () => {
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     const sendingData = { ...data, photo: dp };
-    if (User) {
-      updateUser({ id: User.user_id, data: sendingData });
-    } else {
-      toast.error("You are not logged in!");
-    }
+    if (!User) return toast.error("You are not logged in!");
+    if (User.is_banned) return toast.error("You are banned from this site");
+    updateUser({ id: User.user_id, data: sendingData });
   };
 
   useEffect(() => {
@@ -55,7 +53,7 @@ const UpdateProfile = () => {
     }
 
     if (!updating && updateDone) {
-      toast.success("Profile updated successfully!");
+      toast.success("Profile updated successf!");
     }
   }, [updateError, updateDone]);
 

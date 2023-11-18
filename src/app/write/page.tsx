@@ -78,6 +78,8 @@ const Write = () => {
       return toast.error("Provide some tags for SEO");
     }
 
+    if (User.is_banned) return toast.error("You are banned from creating post");
+
     const sendingData = {
       title: title,
       cover_image: coverImage,
