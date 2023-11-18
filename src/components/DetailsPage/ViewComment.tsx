@@ -48,7 +48,6 @@ const ViewComment = ({ Article }: any) => {
   // Comment add handlers
   useEffect(() => {
     if (!isLoading && isSuccess) {
-      toast.success("Comment added!");
       setComment("");
     }
     if (!isLoading && isError) {
@@ -64,9 +63,6 @@ const ViewComment = ({ Article }: any) => {
 
   // Comment delete messages
   useEffect(() => {
-    if (!removing && removed) {
-      toast.success("Comment removed!");
-    }
     if (!removing && removeError) {
       toast.error("Something went wrong");
     }
@@ -103,7 +99,7 @@ const ViewComment = ({ Article }: any) => {
       </div>
 
       {/* Comments */}
-      <h4 className="border-t pr-4 mt-5 px-5 md:px-10 pb-4 pt-5">
+      <h4 className="border-t border-accent pr-4 mt-5 px-5 md:px-10 pb-4 pt-5">
         Comments {comments?.length}
       </h4>
       <ul className="px-5 md:px-10">
@@ -131,7 +127,9 @@ const ViewComment = ({ Article }: any) => {
                   </div>
                   <div className="chat-header flex items-center  gap-3 mb-1">
                     <div>
-                      <span className="pr-3">{SingleComment?.user_name}</span>
+                      <span className="pr-3 text-neutral">
+                        {SingleComment?.user_name}
+                      </span>
                       <time className="text-xs opacity-50">
                         {formatDistanceToNow(parseISO(SingleComment?.date), {
                           addSuffix: true,
@@ -148,7 +146,7 @@ const ViewComment = ({ Article }: any) => {
                     onClick={() =>
                       handleDeleteComment(SingleComment?.comment_id)
                     }
-                    className="flex items-center text-lg mt-6 text-gray-400 hover:text-red-800 tooltip  tooltip-secondary"
+                    className="flex items-center text-lg mt-6 text-gray-400 hover:text-red-800 tooltip  tooltip-warning"
                     data-tip="Remove"
                   >
                     <MdDelete />
@@ -166,7 +164,7 @@ const ViewComment = ({ Article }: any) => {
       {/* Comment form */}
       <form
         onSubmit={handleSubmitComment}
-        className="md:mx-10 border border-gray-400 mt-5 rounded-full flex h-full items-center shadow-md hover:shadow-lg"
+        className="md:mx-10 border border-neutral hover:border-primary mt-5 rounded-full flex h-full items-center shadow-md hover:shadow-lg"
       >
         <input
           className="w-full bg-transparent py-3 px-5 focus:outline-none text-sm"

@@ -59,7 +59,7 @@ const page = ({ params }: { params: { user_id: number } }) => {
                   </Link>
                 )}
               </div>
-              <span className="text-sm font-semibold text-gray-600">
+              <span className="text-sm font-semibold text-neutral">
                 {User?.occupation ? <span>{User?.occupation}</span> : ""}
               </span>
               <div className="my-1">
@@ -98,10 +98,10 @@ const page = ({ params }: { params: { user_id: number } }) => {
           </div>
 
           <br />
-          <h4 className="mt-4">
+          <div className="font-semibold mt-4">
             {User_posts?.length} Articles from {User?.name}
-          </h4>
-          <div className="mt-3 mb-10 border-t">
+          </div>
+          <div className="mt-3 mb-10 border-t border-accent">
             {User_posts
               ? User_posts.map((post: any) => (
                   <React.Fragment key={post.post_id}>

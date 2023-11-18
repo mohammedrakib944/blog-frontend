@@ -46,18 +46,15 @@ const Search = ({ params }: { params: { query_search: string } }) => {
     <div className="max-w-[800px] min-h-screen mx-auto px-3">
       <form
         onSubmit={handleSearch}
-        className="md:mx-10 border mt-5 rounded-full flex h-full items-center shadow-sm hover:shadow-lg"
+        className="md:mx-10 border border-neutral hover:border-primary mt-5 rounded-full flex h-full items-center shadow-sm hover:shadow-lg"
       >
         <input
-          className="w-full bg-transparent py-3 px-4 focus:outline-none text-sm"
+          className="w-full bg-transparent py-3 px-6 focus:outline-none text-sm"
           type="text"
           onChange={(e) => setSearchText(e.target.value)}
           placeholder="Search Keyword..."
         />
-        <button
-          type="submit"
-          className="border-l border-gray-300  text-lg px-3"
-        >
+        <button type="submit" className="border-l border-neutral  text-lg px-3">
           <MdSearch />
         </button>
       </form>
@@ -73,7 +70,7 @@ const Search = ({ params }: { params: { query_search: string } }) => {
                 ) : (
                   <button
                     onClick={() => setKeyword(category.category_name)}
-                    className="btn btn-sm border-accent hover:bg-gray-100 bg-white text-black "
+                    className="btn btn-sm border border-accent hover:border-primary hover:text-primary hover:bg-base-200 bg-base-100 text-neutral"
                   >
                     {category.category_name}
                   </button>
@@ -91,7 +88,7 @@ const Search = ({ params }: { params: { query_search: string } }) => {
       {isError ||
         (searchData?.length === 0 && (
           <div className="max-w-[800px] min-h-screen mx-auto px-3">
-            <div className="border-b pr-4 mt-5 px-5 md:px-10 pb-4">
+            <div className="border-b border-accent pr-4 mt-5 px-5 md:px-10 pb-4">
               No articles found for{" "}
               <span className="font-bold">"{keyword}"</span>
             </div>
@@ -108,7 +105,7 @@ const Search = ({ params }: { params: { query_search: string } }) => {
       )}
 
       {searchData && (
-        <div className="border-b pr-4 mt-5 px-5 md:px-11 pb-4">
+        <div className="border-b border-accent pr-4 mt-5 px-5 md:px-11 pb-4">
           Results for <span className="font-bold">"{keyword}"</span>
         </div>
       )}

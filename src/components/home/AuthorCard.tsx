@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const AuthorCard = ({ author, border }: any) => {
   return (
-    <ul className={border ? "p-3 border-b " : "p-3"}>
+    <ul className={border ? "p-3 border-b border-accent " : "p-3"}>
       <li className="flex items-center gap-2">
         <Link href={`/profile/${author?.user_id}`}>
           <img

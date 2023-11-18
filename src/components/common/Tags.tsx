@@ -33,7 +33,7 @@ const Tags = ({ tags, setTags }: { tags: string[]; setTags: any }) => {
           tags.map((tag, index) => (
             <div
               key={index}
-              className="w-fit uppercase flex text-xs font-medium items-center px-4 py-2 rounded-md bg-gray-200 text-black"
+              className="w-fit uppercase flex text-xs font-medium items-center px-4 py-2 rounded-md bg-gray-800"
             >
               {tag}
               <button
@@ -52,7 +52,7 @@ const Tags = ({ tags, setTags }: { tags: string[]; setTags: any }) => {
       >
         <input
           type="text"
-          className="w-full inputs rounded-full"
+          className="w-full bg-base-100 inputs rounded-full"
           value={text}
           placeholder="Type a keyword ..."
           onChange={(e) => setText(e.target.value)}

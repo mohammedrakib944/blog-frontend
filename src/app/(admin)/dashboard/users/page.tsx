@@ -88,7 +88,7 @@ const Users = () => {
         <form className="flex gap-4 items-center justify-center">
           <input
             type="text"
-            className="border py-2 rounded-full px-4 text-sm outline-gray-300"
+            className="border border-neutral bg-base-100 hover:border-primary py-2 rounded-full px-4 text-sm outline-gray-300"
             placeholder="Search"
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
@@ -112,7 +112,7 @@ const Users = () => {
             <label className="label-text">Role</label>
             <select
               name="status"
-              className="w-full px-4 py-2 rounded-full text-sm border focus:outline-none"
+              className="w-full px-4 py-2 bg-base-100 rounded-full text-sm border focus:outline-none"
               value={userType}
               onChange={(e) => {
                 setUserType(e.target.value);
@@ -145,10 +145,10 @@ const Users = () => {
       </div>
 
       {/* Table */}
-      <div className="border rounded-lg overflow-x-auto">
+      <div className="border border-accent rounded-lg overflow-x-auto">
         <table className="table table-zebra table-pin-rows table-pin-cols">
           <thead>
-            <tr className="text-black">
+            <tr>
               <th>ID</th>
               <td>Name</td>
               <td>Email</td>

@@ -6,7 +6,7 @@ const Popular = () => {
   const { data: featured_posts } = useGetFeaturedPostQuery(null);
   return (
     <div>
-      <h4 className="border-b pr-4 mt-3 px-5 md:px-10 pb-4">
+      <h4 className="border-b border-accent pr-4 mt-3 px-5 md:px-10 pb-4">
         Popular Articles
       </h4>
       {featured_posts ? (

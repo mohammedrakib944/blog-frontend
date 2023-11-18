@@ -47,7 +47,7 @@ const TopPostCard = ({ post }: any) => {
   }, [post]);
 
   return (
-    <div className="flex gap-2 border-b py-5 pl-2 pr-5 md:px-10">
+    <div className="flex gap-2 border-b border-accent py-5 pl-2 pr-5 md:px-10">
       <Toaster />
       <div className="min-w-[50px] md:min-w-[100px]">
         <Link href={`/profile/${post?.user_id}`}>

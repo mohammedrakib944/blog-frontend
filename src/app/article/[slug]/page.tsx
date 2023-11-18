@@ -32,12 +32,12 @@ const page = async ({ params: { slug } }: { params: { slug: string } }) => {
   const PoularArticles = await popularArticles();
 
   return (
-    <div className="max-w-[650px] mx-auto px-4">
+    <div className="max-w-[700px] mx-auto px-4">
       <h1 className="mb-3 font-extrabold mt-8 lg:mt-12">{Article?.title}</h1>
       <p className="text-primary text-sm hover:underline font-bold mb-2">
         {Article?.category}
       </p>
-      <div className="mt-4 mb-6 flex items-center justify-between border-b pb-5 pt-3">
+      <div className="mt-4 mb-6 flex items-center justify-between border-b border-accent pb-5 pt-3">
         <div className="flex items-center gap-3">
           <Link href={`/profile/${Article?.author?.user_id}`}>
             <img
@@ -49,15 +49,17 @@ const page = async ({ params: { slug } }: { params: { slug: string } }) => {
           <div>
             <Link
               href={`/profile/${Article?.author?.user_id}`}
-              className="font-semibold text-gray-600 hover:text-gray-900"
+              className="font-semibold hover:text-primary"
             >
               {Article?.author?.name}
             </Link>
-            <p className="text-xs">{Article?.author?.occupation}</p>
+            <p className="text-xs text-neutral">
+              {Article?.author?.occupation}
+            </p>
           </div>
         </div>
         <div className="text-xs md:text-sm">
-          <span className="text-gray-500">Published on </span>
+          <span className="text-neutral">Published on </span>
           <span className="font-bold">
             {Article?.date && format(parseISO(Article?.date), "dd MMM yyyy")}
           </span>
@@ -76,7 +78,7 @@ const page = async ({ params: { slug } }: { params: { slug: string } }) => {
         <div className="mb-3">
           {Article && (
             <div
-              className="leading-8"
+              className="leading-7"
               dangerouslySetInnerHTML={{ __html: Article?.content }}
             />
           )}
@@ -86,7 +88,7 @@ const page = async ({ params: { slug } }: { params: { slug: string } }) => {
       <ViewComment Article={Article} />
       <div className="h-[50px]"></div>
       <div>
-        <h4 className="border-b pr-4 mt-3 px-5 md:px-10 pb-4">
+        <h4 className="border-b border-accent pr-4 mt-3 px-5 md:px-10 pb-4">
           Popular Articles
         </h4>
         {PoularArticles &&

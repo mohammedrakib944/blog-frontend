@@ -83,7 +83,7 @@ const Category = () => {
       {/* Add category Modal */}
       <input type="checkbox" id="add_edit_category" className="modal-toggle" />
       <div className="modal">
-        <div className="modal-box">
+        <div className="modal-box border-neutral">
           <form
             onSubmit={handleAddCategory}
             className="flex gap-3 items-center justify-center"
@@ -92,7 +92,7 @@ const Category = () => {
               type="text"
               value={categoryName}
               onChange={(e) => setCategoryName(e.target.value)}
-              className="w-full px-4 py-2 rounded-full text-sm border focus:outline-none"
+              className="w-full px-4 py-2 bg-base-100 hover:border-primary rounded-full text-sm border focus:outline-none"
               placeholder="ex:Phone"
             />
             <button type="submit" disabled={adding} className="btn btn-sm">
@@ -105,12 +105,12 @@ const Category = () => {
         </label>
       </div>
 
-      <div className="flex justify-between items-center py-4 mt-4 border-t">
+      <div className="flex justify-between items-center py-4 mt-4 border-t border-accent">
         <input
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="border py-2 rounded-full px-4 text-sm outline-gray-300"
+          className="border border-neutral hover:border-primary  bg-base-100 py-2 rounded-full px-4 text-sm outline-gray-300"
           placeholder="Search"
         />
         <label htmlFor="add_edit_category" className="btn btn-sm">
@@ -120,10 +120,10 @@ const Category = () => {
       <h6 className="mb-2 font-bold text-sm">
         <span className="text-gray-500">Total : </span> {data.length}
       </h6>
-      <div className="border rounded-lg overflow-hidden">
+      <div className="border border-accent rounded-lg overflow-hidden">
         <table className="table table-zebra table-pin-rows table-pin-cols">
           <thead>
-            <tr className="text-black">
+            <tr>
               <th>ID</th>
               <td>Name</td>
               <td>Hide</td>
@@ -145,7 +145,8 @@ const Category = () => {
                     <td>
                       <input
                         type="checkbox"
-                        className="toggle toggle-sm toggle-warning"
+                        className="toggle toggle-sm toggle-warning tooltip"
+                        data-tip={category.is_hide ? "Show" : "Hide"}
                         onChange={(e) =>
                           handleEditCategory(e, category.category_id)
                         }

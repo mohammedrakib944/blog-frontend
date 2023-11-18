@@ -45,7 +45,7 @@ const Write = () => {
   const [createPost, { isLoading, isSuccess, isError }] =
     useCreatePostMutation();
 
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState("Write a post ...");
   const [tags, setTags] = useState<string[]>([]);
   const [title, setTitle] = useState("");
   const [coverImage, setCoverImage] = useState("");
@@ -110,7 +110,7 @@ const Write = () => {
     <div className="homeLayout min-h-screen p-3">
       <Toaster />
       <div className="">
-        <div className="bg-white pb-3 mb-3 flex justify-between border-b">
+        <div className="pb-3 mb-3 flex justify-between border-b border-accent">
           <button
             type="button"
             className="btn btn-sm bg-gray-600 hover:bg-gray-700"
@@ -135,7 +135,7 @@ const Write = () => {
               placeholder="Title..."
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full text-4xl p-2 font-semibold outline-none mt-2"
+              className="w-full bg-base-100 text-4xl p-2 font-semibold outline-none mt-2"
             />
             <br />
             <ReactQuill
@@ -156,7 +156,7 @@ const Write = () => {
                 value={coverImage}
                 onChange={(e) => setCoverImage(e.target.value)}
                 placeholder="Cover Image URL"
-                className="w-full border-2 rounded-full px-4 py-2 text-sm outline-primary"
+                className="w-full border border-neutral bg-base-100 rounded-full px-4 py-2 text-sm outline-primary"
               />
             </div>
 

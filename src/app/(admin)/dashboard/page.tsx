@@ -72,16 +72,16 @@ const page = () => {
         <h3 className="mt-6">Search Articles</h3>
         <form
           onSubmit={handleSearch}
-          className="mt-4 mb-6 col-span-4 overflow-hidden flex w-full max-w-[600px] border shadow-md hover:shadow-xl rounded-full mx-auto"
+          className="mt-4 mb-6 col-span-4 overflow-hidden flex w-full max-w-[600px] border border-neutral hover:border-primary shadow-md hover:shadow-xl rounded-full mx-auto"
         >
           <input
-            className="w-full bg-white py-3 px-4 focus:outline-none text-sm"
+            className="w-full bg-base-100 py-3 px-6 focus:outline-none text-sm"
             type="text"
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
             placeholder="Search..."
           />
-          <div className="grid place-items-center border-l  px-3">
+          <div className="grid place-items-center border-l border-accent  px-3">
             <MdSearch />
           </div>
         </form>
@@ -105,10 +105,10 @@ const page = () => {
         {isLoading || searching ? (
           <Loader />
         ) : (
-          <div className="border rounded-xl overflow-x-auto">
+          <div className="border border-accent rounded-xl overflow-x-auto">
             <table className="table table-zebra table-pin-rows table-pin-cols">
               <thead>
-                <tr className="text-black">
+                <tr>
                   <th>ID</th>
                   <td>Title</td>
                   <td>Date</td>

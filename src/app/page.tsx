@@ -23,7 +23,7 @@ export default function Home() {
     <main className="max-w-[1100px] mx-auto flex flex-col lg:grid lg:grid-cols-10 gap-5 mt-3 px-3">
       <div className="col-span-3 order-2 lg:order-1 h-fit lg:sticky top-[68px]">
         <p className="p-3 font-bold">Top Authors</p>
-        <div className=" bg-white rounded-md border mt-1">
+        <div className=" bg-base-100 rounded-md border border-accent mt-1">
           {top_authors ? (
             top_authors.map((author: any, index: number) => (
               <AuthorCard
@@ -46,7 +46,7 @@ export default function Home() {
         <Popular />
         <div>
           <h4 className="mt-6 pb-4 pt-3 md:px-10">Latest Articles</h4>
-          <div className="mt-3 border-t">
+          <div className="mt-3 border-t border-accent">
             {all_posts ? (
               all_posts.map((post: any) => (
                 <TopPostCard key={post.post_id} post={post} />

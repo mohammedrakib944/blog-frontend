@@ -22,7 +22,7 @@ const Navbar = () => {
     window.location.reload();
   };
   return (
-    <div className="w-full border-b  bg-white z-50 sticky top-0">
+    <div className="w-full border-b border-accent bg-base-200 z-50 sticky top-0">
       <div className="homeLayout  grid grid-cols-10 px-3 py-2">
         <Link href="/" className="col-span-3 flex items-center gap-2">
           <Image className="w-8" src={Logo} alt="Tech" />
@@ -32,14 +32,14 @@ const Navbar = () => {
         <div className="col-span-5 pl-4 md:pl-10 flex items-center gap-5 md:gap-10">
           <Link
             href="/search/~post"
-            className="flex items-center gap-2 text-lg text-gray-500 hover:text-gray-900 tooltip  tooltip-secondary tooltip-bottom"
+            className="flex items-center gap-2 text-lg text-neutral hover:text-primary tooltip  tooltip-secondary tooltip-bottom"
             data-tip="Search"
           >
             <FiSearch /> <span className="text-sm">Search</span>
           </Link>
           <Link
             href="/write"
-            className="flex items-center gap-2 text-lg text-gray-500 hover:text-gray-900 tooltip  tooltip-secondary tooltip-bottom"
+            className="flex items-center gap-2 text-lg text-neutral hover:text-primary tooltip  tooltip-secondary tooltip-bottom"
             data-tip="Write Article"
           >
             <FiEdit /> <span className="text-sm">Write</span>
@@ -49,7 +49,7 @@ const Navbar = () => {
         <div className="col-span-2 flex items-center gap-8 lg:gap-14 justify-end">
           {User ? (
             <div className="flex items-center gap-3">
-              <div className="hidden md:flex flex-col items-end gap-0  hover:bg-white hover:cursor-default">
+              <div className="hidden md:flex flex-col items-end gap-0 hover:cursor-default">
                 <h4 className="text-sm">{User?.name}</h4>
                 <p className="text-xs">{User?.occupation}</p>
               </div>{" "}
@@ -62,12 +62,12 @@ const Navbar = () => {
                 </div>
                 <ul
                   tabIndex={0}
-                  className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-md border w-52"
+                  className="dropdown-content z-[1] menu p-2 shadow bg-base-200 rounded-md border border-accent w-52"
                 >
-                  <li className="md:hidden border-b mb-2 pb-2">
-                    <div className="flex flex-col gap-0  hover:bg-white hover:cursor-default">
+                  <li className="md:hidden border-b border-accent mb-2 pb-2">
+                    <div className="flex flex-col gap-0 hover:cursor-default">
                       <h4 className="text-sm">{User?.name}</h4>
-                      <p className="text-xs">{User?.occupation}</p>
+                      <p className="text-xs text-neutral">{User?.occupation}</p>
                     </div>
                   </li>
                   <li>
@@ -92,7 +92,7 @@ const Navbar = () => {
                       </Link>
                     </li>
                   )}
-                  <li className="border-t mt-1">
+                  <li className="border-t border-accent mt-1">
                     <button onClick={handleSignout}>
                       <AiOutlineLogout />
                       Sign Out
