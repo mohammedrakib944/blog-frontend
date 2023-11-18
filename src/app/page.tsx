@@ -45,7 +45,7 @@ export default function Home() {
       <div className="col-span-7 order-1 lg:order-2">
         <Popular />
         <div>
-          <h4 className="mt-6 pb-4 pt-3 md:px-10">Latest Articles</h4>
+          <div className="mt-6 pb-4 pt-3 md:px-10">Latest Articles</div>
           <div className="mt-3 border-t border-accent">
             {all_posts ? (
               all_posts.map((post: any) => (

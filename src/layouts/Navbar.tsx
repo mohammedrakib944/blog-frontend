@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import Logo from "@/assets/logo.svg";
 import { RxAvatar, RxDashboard } from "react-icons/rx";
@@ -21,6 +21,13 @@ const Navbar = () => {
     signOut();
     window.location.reload();
   };
+
+  // handle theme change
+  const handleThemeChange = (e: any) => {
+    const theme = e.target.checked ? "blog_light" : "blog_dark";
+    document.documentElement.setAttribute("data-theme", theme);
+  };
+
   return (
     <div className="w-full border-b border-accent bg-base-200 z-50 sticky top-0">
       <div className="homeLayout  grid grid-cols-10 px-3 py-2">
@@ -44,6 +51,11 @@ const Navbar = () => {
           >
             <FiEdit /> <span className="text-sm">Write</span>
           </Link>
+          <input
+            type="checkbox"
+            onChange={handleThemeChange}
+            className="toggle toggle-sm"
+          />
         </div>
 
         <div className="col-span-2 flex items-center gap-8 lg:gap-14 justify-end">
@@ -103,7 +115,7 @@ const Navbar = () => {
             </div>
           ) : (
             <Link href="/sign-in">
-              <button className="min-w-[74px] btn btn-sm bg-black hover:bg-black/70 float-right">
+              <button className="min-w-[74px] btn btn-sm float-right">
                 Sign in
                 <span className="hidden md:block">
                   <AiOutlineArrowRight />

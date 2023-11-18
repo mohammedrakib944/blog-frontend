@@ -7,7 +7,7 @@ import Link from "next/link";
 const Topbar = () => {
   return (
     <div className="w-full border-b border-accent  bg-base-200 z-50 sticky top-0 shadow-sm">
-      <div className="homeLayout flex items-center justify-between px-3 py-2">
+      <div className="homeLayout flex items-center justify-between p-3">
         <Link href="/" className="col-span-3 flex items-center gap-2">
           <Image className="w-8" src={Logo} alt="Tech" />
           <h3 className="hidden md:block">

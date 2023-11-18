@@ -13,11 +13,11 @@ export default function RootLayout({
   const { User } = useSelector((state: any) => state.user);
   const router = useRouter();
 
-  // useEffect(() => {
-  //   if (User?.role !== "admin") {
-  //     router.push("/");
-  //   }
-  // }, [User]);
+  useEffect(() => {
+    if (User?.role !== "admin") {
+      router.push("/");
+    }
+  }, [User]);
 
   return (
     <>

@@ -20,7 +20,7 @@ interface Ichildren {
 
 const RootLayout: React.FC<Ichildren> = ({ children }) => {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="blog_dark">
       <ClerkProvider>
         <StoreProvider>
           <AuthProvider>

@@ -9,7 +9,7 @@ const config: Config = {
   plugins: [require("daisyui")],
   daisyui: {
     themes: [
-      "blog_dark", // first one will be the default theme
+      // "blog_dark", // first one will be the default theme
       {
         blog_light: {
           primary: "#0094FF",

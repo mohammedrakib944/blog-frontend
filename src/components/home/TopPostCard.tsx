@@ -91,12 +91,16 @@ const TopPostCard = ({ post }: any) => {
           )}
         </div>
         <Link href={`/article/${post?.slug}`}>
-          <h4 className="mb-1 hover:text-primary">{post?.title}</h4>
+          <div className="mb-1 font-semibold hover:text-primary">
+            {post?.title}
+          </div>
         </Link>
         <div className="text-sm text-neutral">{plainTextContent}</div>
-        <span className="text-neutral cursor-pointer hover:underline text-xs font-normal">
-          {post?.category}
-        </span>
+        <Link href={`/search/${post?.category}`}>
+          <span className="text-neutral cursor-pointer hover:underline text-xs font-normal">
+            {post?.category}
+          </span>
+        </Link>
         <p className="mt-2 text-xs flex items-center gap-2 text-neutral">
           <span className="text-lg">
             <AiFillEye />
