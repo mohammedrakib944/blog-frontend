@@ -80,7 +80,7 @@ const page = async ({ params: { slug } }: { params: { slug: string } }) => {
         <div className="mb-3">
           {Article && (
             <div
-              className="leading-7"
+              className="leading-7 text-base"
               dangerouslySetInnerHTML={{ __html: Article?.content }}
             />
           )}

@@ -28,7 +28,7 @@
     @apply max-w-[1100px] mx-auto;
   }
   .btn {
-    @apply bg-[#1f6feb] hover:bg-blue-700 border-accent rounded-full text-white px-8 capitalize;
+    @apply bg-[#1f6feb] hover:bg-blue-700 border-error rounded-full text-white px-8 capitalize;
   }
   .btn-sm {
     @apply px-4 text-xs;

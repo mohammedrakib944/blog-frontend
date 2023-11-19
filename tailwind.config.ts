@@ -21,7 +21,7 @@ const config: Config = {
           info: "#58a6ff",
           success: "#00d600",
           warning: "#ef4444",
-          error: "#21262d",
+          error: "#0b397f4d",
         },
         blog_dark: {
           primary: "#0094FF",
@@ -34,7 +34,7 @@ const config: Config = {
           info: "#58a6ff",
           success: "#00d600",
           warning: "#ef4444",
-          error: "#21262d",
+          error: "#1e232a",
         },
       },
     ],

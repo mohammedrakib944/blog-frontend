@@ -1,8 +1,9 @@
 "use client";
 import Link from "next/link";
 import toast from "react-hot-toast";
-import { Toaster } from "react-hot-toast";
+import Loader from "../common/Loader";
 import React, { useEffect, useState } from "react";
+import { Toaster } from "react-hot-toast";
 import { AiOutlineMessage } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
 import { IoIosSend } from "react-icons/io";
@@ -21,8 +22,7 @@ const ViewComment = ({ Article }: any) => {
   const { data: comments } = useGetcommentsQuery(Article.post_id, {
     refetchOnMountOrArgChange: true,
   });
-  const [createComment, { isSuccess, isLoading, isError }] =
-    useCreatecommentMutation();
+  const [createComment, { isLoading, isError }] = useCreatecommentMutation();
   const [
     deletecomment,
     { isSuccess: removed, isError: removeError, isError: removing },
@@ -43,17 +43,15 @@ const ViewComment = ({ Article }: any) => {
       comment,
     };
     createComment(sendingData);
+    setComment("");
   };
 
   // Comment add handlers
   useEffect(() => {
-    if (!isLoading && isSuccess) {
-      setComment("");
-    }
     if (!isLoading && isError) {
       toast.error("Something went wrong");
     }
-  }, [isSuccess, isError]);
+  }, [isError]);
 
   // Delete comment
   const handleDeleteComment = (comment_id: any) => {
@@ -175,9 +173,16 @@ const ViewComment = ({ Article }: any) => {
         />
         <button
           type="submit"
+          disabled={isLoading}
           className="border-l border-gray-400  text-lg px-5 text-primary"
         >
-          <IoIosSend />
+          {isLoading ? (
+            <div className="flex items-center">
+              <span className="loading loading-primary loading-spinner loading-xs"></span>
+            </div>
+          ) : (
+            <IoIosSend />
+          )}
         </button>
       </form>
     </div>

@@ -90,7 +90,7 @@ const page = ({ params }: { params: { user_id: number } }) => {
                   )}
                 </div>
 
-                <Link href={`/write`}>
+                <Link href={`/write`} className="mt-3">
                   <button className="btn btn-sm btn-primary">
                     Write article
                   </button>

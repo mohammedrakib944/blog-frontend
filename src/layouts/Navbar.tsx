@@ -53,13 +53,13 @@ const Navbar = () => {
           <h3>Techr</h3>
         </Link>
 
-        <div className="col-span-5 md:pl-10 flex items-center gap-3 md:gap-10">
+        <div className="col-span-5 md:pl-10 flex items-center gap-5 md:gap-10">
           <Link
             href="/search/~post"
             className="flex items-center gap-2 text-lg text-neutral hover:text-primary tooltip  tooltip-secondary tooltip-bottom"
             data-tip="Search"
           >
-            <FiSearch /> <span className="text-sm">Search</span>
+            <FiSearch /> <span className="text-sm hidden md:block">Search</span>
           </Link>
           <Link
             href="/write"

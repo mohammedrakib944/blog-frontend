@@ -62,7 +62,7 @@ const TopPostCard = ({ post }: any) => {
         <div className="flex justify-between items-center text-sm pb-2">
           <div>
             <Link href={`/profile/${post?.user_id}`} className="pr-4">
-              <span className="text-primary font-bold">{post?.name}</span>
+              <span className="text-primary">{post?.name}</span>
             </Link>
 
             <span className="text-neutral">
@@ -91,7 +91,7 @@ const TopPostCard = ({ post }: any) => {
           )}
         </div>
         <Link href={`/article/${post?.slug}`}>
-          <div className="mb-1 font-semibold hover:text-primary">
+          <div className="mb-1 font-medium text-lg hover:text-primary">
             {post?.title}
           </div>
         </Link>

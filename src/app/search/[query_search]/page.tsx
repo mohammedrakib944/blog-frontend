@@ -106,7 +106,8 @@ const Search = ({ params }: { params: { query_search: string } }) => {
 
       {searchData && (
         <div className="border-b border-accent pr-4 mt-5 px-5 md:px-11 pb-4">
-          Results for <span className="font-bold">"{keyword}"</span>
+          <span className="text-neutral">Results for </span>{" "}
+          <span className="font-semibold">"{keyword}"</span>
         </div>
       )}
 
