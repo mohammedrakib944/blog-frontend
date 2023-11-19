@@ -19,7 +19,7 @@ const userApi = apiSlice.injectEndpoints({
 
     // Login User
     loginUser: builder.mutation({
-      query: (data: { name: string; photo: string; email: string }) => ({
+      query: (data: { name: string; email: string }) => ({
         url: "/user",
         method: "POST",
         body: data,
@@ -28,9 +28,7 @@ const userApi = apiSlice.injectEndpoints({
         try {
           const result = await queryFulfilled;
           localStorage.setItem("token", JSON.stringify(result.data.token));
-        } catch (error) {
-          console.log(error);
-        }
+        } catch (err) {}
       },
     }),
 

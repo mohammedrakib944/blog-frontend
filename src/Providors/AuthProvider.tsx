@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useUser } from "@clerk/nextjs";
 import { setUser } from "@/redux/features/user/userSlice";
 import { useDispatch } from "react-redux";
@@ -27,8 +27,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       if (!User && sessionUser) {
         const name = sessionUser.fullName!;
         const email = sessionUser.primaryEmailAddress!.emailAddress!;
-        const photo = sessionUser.imageUrl!;
-        loginUser({ name, photo, email });
+        loginUser({ name, email });
       }
     }
     requestForLogin();

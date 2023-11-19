@@ -33,11 +33,11 @@ const Tags = ({ tags, setTags }: { tags: string[]; setTags: any }) => {
           tags.map((tag, index) => (
             <div
               key={index}
-              className="w-fit uppercase flex text-xs font-medium items-center px-4 py-2 rounded-md bg-gray-800"
+              className="w-fit uppercase text-base-100 flex text-xs font-medium items-center px-4 py-2 rounded-md bg-gray-800"
             >
               {tag}
               <button
-                className="ml-4 text-lg text-gray-500 hover:text-red-700"
+                className="ml-4 text-lg hover:text-red-500"
                 onClick={() => handleDelete(tag)}
               >
                 <FiDelete />

@@ -1,11 +1,6 @@
 "use client";
 import React from "react";
-import {
-  AiFillEye,
-  AiFillEdit,
-  AiFillLinkedin,
-  AiFillGithub,
-} from "react-icons/ai";
+import { AiFillEdit, AiFillLinkedin, AiFillGithub } from "react-icons/ai";
 import Link from "next/link";
 import TopPostCard from "@/components/home/TopPostCard";
 import { useGetUserByIdQuery } from "@/redux/features/user/userApi";
@@ -62,6 +57,7 @@ const page = ({ params }: { params: { user_id: number } }) => {
               <span className="text-sm font-semibold text-neutral">
                 {User?.occupation ? <span>{User?.occupation}</span> : ""}
               </span>
+
               <div className="my-1">
                 <p className="mt-1 text-sm text-neutral">{User?.bio}</p>
                 <div className="flex gap-3 mt-4">
@@ -93,6 +89,12 @@ const page = ({ params }: { params: { user_id: number } }) => {
                     ""
                   )}
                 </div>
+
+                <Link href={`/write`}>
+                  <button className="btn btn-sm btn-primary">
+                    Write article
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -101,7 +103,7 @@ const page = ({ params }: { params: { user_id: number } }) => {
           <div className="font-semibold mt-4">
             {User_posts?.length} Articles from {User?.name}
           </div>
-          <div className="mt-3 mb-10 border-t border-accent">
+          <div className="mt-3 min-h-screen mb-10 border-t border-accent">
             {User_posts
               ? User_posts.map((post: any) => (
                   <React.Fragment key={post.post_id}>

@@ -10,7 +10,6 @@ import { BsPenFill } from "react-icons/bs";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { MdOutlineLightMode } from "react-icons/md";
-import { IoMoonOutline } from "react-icons/io5";
 // clerk
 import { useClerk } from "@clerk/nextjs";
 
@@ -54,7 +53,7 @@ const Navbar = () => {
           <h3>Techr</h3>
         </Link>
 
-        <div className="col-span-5 pl-4 md:pl-10 flex items-center gap-5 md:gap-10">
+        <div className="col-span-5 md:pl-10 flex items-center gap-3 md:gap-10">
           <Link
             href="/search/~post"
             className="flex items-center gap-2 text-lg text-neutral hover:text-primary tooltip  tooltip-secondary tooltip-bottom"
@@ -71,12 +70,6 @@ const Navbar = () => {
           </Link>
 
           <div className="flex items-center gap-2">
-            <label
-              htmlFor="themeChange"
-              className="text-sm text-neutral cursor-pointer"
-            >
-              <IoMoonOutline />
-            </label>
             <input
               type="checkbox"
               checked={is_light}

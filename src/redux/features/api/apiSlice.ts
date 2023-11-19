@@ -1,6 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export const API_URL = "http://localhost:8080/api";
+// production
+export const API_URL = "https://blog-api.nrose.org/api";
+// local
+// export const API_URL = "http://localhost:50003/api";
 
 export const apiSlice = createApi({
   reducerPath: "blogApi",
