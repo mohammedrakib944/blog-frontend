@@ -33,7 +33,9 @@ const page = async ({ params: { slug } }: { params: { slug: string } }) => {
 
   return (
     <div className="max-w-[700px] mx-auto px-4">
-      <h1 className="mb-3 font-extrabold mt-8 lg:mt-12">{Article?.title}</h1>
+      <h1 className="mb-3 text-4xl font-extrabold mt-8 lg:mt-12">
+        {Article?.title}
+      </h1>
       <p className="text-primary text-sm hover:underline font-bold mb-2">
         {Article?.category}
       </p>

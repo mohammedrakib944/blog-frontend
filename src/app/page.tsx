@@ -22,7 +22,7 @@ export default function Home() {
   return (
     <main className="max-w-[1100px] mx-auto flex flex-col lg:grid lg:grid-cols-10 gap-5 mt-3 px-3">
       <div className="col-span-3 order-2 lg:order-1 h-fit lg:sticky top-[68px]">
-        <p className="p-3 font-bold">Top Authors</p>
+        <p className="p-3">Top Authors</p>
         <div className=" bg-base-100 rounded-md border border-accent mt-1">
           {top_authors ? (
             top_authors.map((author: any, index: number) => (

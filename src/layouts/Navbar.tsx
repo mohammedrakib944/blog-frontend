@@ -9,6 +9,7 @@ import { FiEdit, FiSearch } from "react-icons/fi";
 import { BsPenFill } from "react-icons/bs";
 import Link from "next/link";
 import { useSelector } from "react-redux";
+import { MdOutlineLightMode } from "react-icons/md";
 // clerk
 import { useClerk } from "@clerk/nextjs";
 
@@ -51,11 +52,21 @@ const Navbar = () => {
           >
             <FiEdit /> <span className="text-sm">Write</span>
           </Link>
-          <input
-            type="checkbox"
-            onChange={handleThemeChange}
-            className="toggle toggle-sm"
-          />
+
+          <div className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              onChange={handleThemeChange}
+              id="themeChange"
+              className="toggle toggle-primary toggle-sm"
+            />
+            <label
+              htmlFor="themeChange"
+              className="text-sm text-neutral cursor-pointer"
+            >
+              <MdOutlineLightMode />
+            </label>
+          </div>
         </div>
 
         <div className="col-span-2 flex items-center gap-8 lg:gap-14 justify-end">
