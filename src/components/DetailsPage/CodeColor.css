@@ -1,9 +1,10 @@
 .ql-syntax {
   background: url(/logo.png) center no-repeat #000d14;
   color: #90dfff;
-  font-size: 14px;
+  font-size: 16px;
   padding: 20px;
   border-radius: 10px;
   margin: 20px 0;
   font-family: monospace;
+  overflow: auto;
 }
