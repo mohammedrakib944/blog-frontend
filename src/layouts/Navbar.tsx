@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Logo from "@/assets/logo.svg";
 import { RxAvatar, RxDashboard } from "react-icons/rx";
@@ -10,11 +10,13 @@ import { BsPenFill } from "react-icons/bs";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { MdOutlineLightMode } from "react-icons/md";
+import { IoMoonOutline } from "react-icons/io5";
 // clerk
 import { useClerk } from "@clerk/nextjs";
 
 const Navbar = () => {
   const { User } = useSelector((state: any) => state.user);
+  const [is_light, setIs_light] = useState(false);
   const { signOut } = useClerk();
 
   const handleSignout = () => {
@@ -26,8 +28,23 @@ const Navbar = () => {
   // handle theme change
   const handleThemeChange = (e: any) => {
     const theme = e.target.checked ? "blog_light" : "blog_dark";
-    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+    changeTheme();
   };
+  // handle theme change - Main function
+  function changeTheme() {
+    // 1. get the theme from local storage
+    let theme: string = localStorage.getItem("theme") || "blog_dark";
+    // 2. set is_light state of the component
+    setIs_light(theme === "blog_light" ? true : false);
+    // 3. set the theme to the data-theme of the html tag
+    document.documentElement.setAttribute("data-theme", theme);
+  }
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      changeTheme();
+    }
+  }, []);
 
   return (
     <div className="w-full border-b border-accent bg-base-200 z-50 sticky top-0">
@@ -54,8 +71,15 @@ const Navbar = () => {
           </Link>
 
           <div className="flex items-center gap-2">
+            <label
+              htmlFor="themeChange"
+              className="text-sm text-neutral cursor-pointer"
+            >
+              <IoMoonOutline />
+            </label>
             <input
               type="checkbox"
+              checked={is_light}
               onChange={handleThemeChange}
               id="themeChange"
               className="toggle toggle-primary toggle-sm"
