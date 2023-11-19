@@ -12,6 +12,16 @@ export default function Page() {
         </div>
       </Link>
       <SignIn />
+      <div>
+        Please{" "}
+        <Link
+          href="/sign-up"
+          className="font-extrabold text-primary hover:underline"
+        >
+          Sign up
+        </Link>{" "}
+        for first time only.
+      </div>
     </div>
   );
 }

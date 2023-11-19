@@ -36,9 +36,12 @@ const page = async ({ params: { slug } }: { params: { slug: string } }) => {
       <h1 className="mb-3 text-4xl font-extrabold mt-8 lg:mt-12">
         {Article?.title}
       </h1>
-      <p className="text-primary text-sm hover:underline font-bold mb-2">
+      <Link
+        href={`/search/${Article?.category}`}
+        className="text-primary text-sm hover:underline font-bold mb-2"
+      >
         {Article?.category}
-      </p>
+      </Link>
       <div className="mt-4 mb-6 flex items-center justify-between border-b border-accent pb-5 pt-3">
         <div className="flex items-center gap-3">
           <Link href={`/profile/${Article?.author?.user_id}`}>

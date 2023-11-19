@@ -74,7 +74,7 @@ const UpdateProfile = () => {
             key={image}
             src={`/avatars/${image}.jpg`}
             className={`w-[85px] cursor-pointer h-[85px] rounded-full mx-auto border ${
-              dp.includes(image) && "border-primary scale-105"
+              dp.includes(image) && "border-2 border-primary scale-105"
             } p-1`}
             alt=""
             onClick={() => setDp(`/avatars/${image}.jpg`)}

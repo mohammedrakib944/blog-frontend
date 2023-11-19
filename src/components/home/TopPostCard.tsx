@@ -62,7 +62,7 @@ const TopPostCard = ({ post }: any) => {
         <div className="flex justify-between items-center text-sm pb-2">
           <div>
             <Link href={`/profile/${post?.user_id}`} className="pr-4">
-              <span className="text-primary">{post?.name}</span>
+              <span className="text-primary font-semibold">{post?.name}</span>
             </Link>
 
             <span className="text-neutral">

@@ -33,7 +33,7 @@ const Tags = ({ tags, setTags }: { tags: string[]; setTags: any }) => {
           tags.map((tag, index) => (
             <div
               key={index}
-              className="w-fit uppercase text-netural flex text-xs font-medium items-center px-4 py-2 rounded-md bg-gray-800"
+              className="w-fit uppercase text-gray-300 flex text-xs font-medium items-center px-4 py-2 rounded-md bg-gray-800"
             >
               {tag}
               <button

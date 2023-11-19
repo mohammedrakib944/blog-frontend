@@ -59,8 +59,8 @@ const page = ({ params }: { params: { user_id: number } }) => {
               </span>
 
               <div className="my-1">
-                <p className="mt-1 text-sm text-neutral">{User?.bio}</p>
-                <div className="flex gap-3 mt-4">
+                <p className="mt-1 text-sm text-neutral mb-3">{User?.bio}</p>
+                <div className="flex gap-3 mb-3">
                   {User?.linkedin ? (
                     <Link
                       className="text-xl hover:text-primary tooltip  tooltip-secondary"
@@ -89,12 +89,13 @@ const page = ({ params }: { params: { user_id: number } }) => {
                     ""
                   )}
                 </div>
-
-                <Link href={`/write`} className="mt-3">
-                  <button className="btn btn-sm btn-primary">
-                    Write article
-                  </button>
-                </Link>
+                {loggedInUser?.user_id === User?.user_id && (
+                  <Link href={`/write`}>
+                    <button className="btn btn-sm btn-primary">
+                      Write article
+                    </button>
+                  </Link>
+                )}
               </div>
             </div>
           </div>
