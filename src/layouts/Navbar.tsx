@@ -32,11 +32,8 @@ const Navbar = () => {
   };
   // handle theme change - Main function
   function changeTheme() {
-    // 1. get the theme from local storage
     let theme: string = localStorage.getItem("theme") || "blog_dark";
-    // 2. set is_light state of the component
     setIs_light(theme === "blog_light" ? true : false);
-    // 3. set the theme to the data-theme of the html tag
     document.documentElement.setAttribute("data-theme", theme);
   }
   useEffect(() => {
@@ -69,7 +66,10 @@ const Navbar = () => {
             <FiEdit /> <span className="text-sm">Write</span>
           </Link>
 
-          <div className="flex items-center gap-2">
+          <div
+            className="flex items-center gap-2 tooltip  tooltip-secondary tooltip-bottom"
+            data-tip="Change theme"
+          >
             <input
               type="checkbox"
               checked={is_light}
