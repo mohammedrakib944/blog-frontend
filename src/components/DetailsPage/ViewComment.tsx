@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import toast from "react-hot-toast";
-import Loader from "../common/Loader";
 import React, { useEffect, useState } from "react";
 import { Toaster } from "react-hot-toast";
 import { AiOutlineMessage } from "react-icons/ai";
@@ -29,6 +28,7 @@ const ViewComment = ({ Article }: any) => {
   ] = useDeletecommentMutation();
   const { User } = useSelector((state: any) => state.user);
   const [comment, setComment] = useState("");
+  const [Tags, setTags] = useState([]);
 
   // Comment handle
   const handleSubmitComment = (e: React.FormEvent<HTMLFormElement>) => {
@@ -66,6 +66,13 @@ const ViewComment = ({ Article }: any) => {
     }
   }, [removed, removeError]);
 
+  // Set tags
+  useEffect(() => {
+    if (Article) {
+      setTags(Article.tags.split(","));
+    }
+  }, [Article]);
+
   // View handle
   useEffect(() => {
     function IncrementViewCount() {
@@ -81,7 +88,21 @@ const ViewComment = ({ Article }: any) => {
   return (
     <div className="my-4 pb-4">
       <Toaster />
-      <div className="flex gap-6 items-center text-neutral">
+
+      <p className="text-sm font-semibold mt-3">Tags:</p>
+      <div className="flex flex-wrap gap-2">
+        {Tags?.length > 0 &&
+          Tags?.map((tag: string, index: number) => (
+            <Link key={index} href={`/search/${tag}`}>
+              <span className="text-neutral hover:text-white hover:underline duration-150 text-sm cursor-pointer">
+                #{tag}
+              </span>
+            </Link>
+          ))}
+      </div>
+      <br />
+
+      <div className="flex gap-6 items-center text-neutral border-t border-accent pt-6">
         <div className="text-xs flex gap-2 items-center">
           <span className="text-xl">
             <PiSmileyXEyes />

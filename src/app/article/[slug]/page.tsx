@@ -27,6 +27,7 @@ async function popularArticles() {
   return res.json();
 }
 
+// MAIN COMPONENT
 const page = async ({ params: { slug } }: { params: { slug: string } }) => {
   const Article = await getArticle(slug);
   const PoularArticles = await popularArticles();
@@ -88,7 +89,6 @@ const page = async ({ params: { slug } }: { params: { slug: string } }) => {
             />
           )}
         </div>
-        <br />
       </div>
       <ViewComment Article={Article} />
       <div className="h-[50px]"></div>
