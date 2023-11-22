@@ -146,9 +146,14 @@ const ViewComment = ({ Article }: any) => {
                   </div>
                   <div className="chat-header flex items-center  gap-3 mb-1">
                     <div>
-                      <span className="pr-3 text-neutral">
-                        {SingleComment?.user_name}
-                      </span>
+                      <Link
+                        href={`/profile/${SingleComment?.user_id}`}
+                        title="Visit Profile"
+                      >
+                        <span className="pr-3 text-neutral hover:underline">
+                          {SingleComment?.user_name}
+                        </span>
+                      </Link>
                       <time className="text-xs opacity-50">
                         {formatDistanceToNow(parseISO(SingleComment?.date), {
                           addSuffix: true,

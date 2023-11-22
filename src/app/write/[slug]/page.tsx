@@ -150,13 +150,18 @@ const EditArticle = ({ params: { slug } }: { params: { slug: string } }) => {
               className="w-full bg-base-100 text-4xl p-2 font-semibold outline-none mt-2"
             />
             <br />
-            <ReactQuill
-              value={content}
-              placeholder="Write here ..."
-              modules={module}
-              onChange={setContent}
-              theme="bubble"
-            />
+            <div className="border-l border-neutral mt-4 pl-3">
+              <p className="text-sm italic text-neutral cursor-default pl-2">
+                [Select] for edit text
+              </p>
+              <ReactQuill
+                value={content}
+                placeholder="Write here ..."
+                modules={module}
+                onChange={setContent}
+                theme="bubble"
+              />
+            </div>
           </div>
           <div className="md:min-w-[400px] md:max-w-[400px]">
             <p className="text-sm mb-2 font-semibold text-gray-500">

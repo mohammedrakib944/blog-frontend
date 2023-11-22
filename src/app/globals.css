@@ -56,6 +56,9 @@
   padding: 8px !important;
   background: #f1f1f1;
 }
+.ql-editor.ql-blank::before {
+  color: rgb(0 162 255 / 59%) !important;
+}
 .ql-toolbar.ql-snow + .ql-container.ql-snow {
   border: none !important;
 }

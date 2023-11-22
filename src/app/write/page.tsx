@@ -45,7 +45,7 @@ const Write = () => {
   const [createPost, { isLoading, isSuccess, isError }] =
     useCreatePostMutation();
 
-  const [content, setContent] = useState("Write a post ...");
+  const [content, setContent] = useState("");
   const [tags, setTags] = useState<string[]>([]);
   const [title, setTitle] = useState("");
   const [coverImage, setCoverImage] = useState("");
@@ -129,7 +129,7 @@ const Write = () => {
         </div>
 
         <div className="flex flex-col md:flex-row gap-5">
-          <div className="w-full border-r pr-5">
+          <div className="w-full pr-5">
             <input
               type="text"
               placeholder="Title..."
@@ -138,15 +138,20 @@ const Write = () => {
               className="w-full bg-base-100 text-4xl p-2 font-semibold outline-none mt-2"
             />
             <br />
-            <ReactQuill
-              value={content}
-              placeholder="Write here ..."
-              modules={module}
-              onChange={setContent}
-              theme="bubble"
-            />
+            <div className="border-l border-neutral mt-4 pl-3">
+              <p className="text-sm italic text-neutral cursor-default pl-2">
+                [Select] for edit text
+              </p>
+              <ReactQuill
+                value={content}
+                placeholder="Write here ..."
+                modules={module}
+                onChange={setContent}
+                theme="bubble"
+              />
+            </div>
           </div>
-          <div className="md:min-w-[400px] md:max-w-[400px]">
+          <div className="md:min-w-[400px] md:border-l border-accent pl-5 md:max-w-[400px]">
             <p className="text-sm mb-2 font-semibold text-gray-500">
               Cover image URL
             </p>
