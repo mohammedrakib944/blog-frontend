@@ -2,12 +2,13 @@
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { AiFillEye } from "react-icons/ai";
+import { AiFillEye, AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { format, parseISO } from "date-fns";
-import { CiEdit } from "react-icons/ci";
 import { useSelector } from "react-redux";
-import { MdDeleteOutline } from "react-icons/md";
-import { useDeletePostMutation } from "@/redux/features/post/postApi";
+import {
+  useDeletePostMutation,
+  useUpdateStatusMutation,
+} from "@/redux/features/post/postApi";
 
 function stripHTMLTags(html: any) {
   const doc = new DOMParser().parseFromString(html, "text/html");
@@ -24,6 +25,15 @@ const TopPostCard = ({ post }: any) => {
   const [plainTextContent, setPlainTextContent] = useState("");
   const [deletePost, { isLoading: deleting, isSuccess: deleted }] =
     useDeletePostMutation();
+  const [
+    updateStatus,
+    {
+      isLoading: updating,
+      isSuccess: updateSuccess,
+      isError: updateError,
+      error,
+    },
+  ] = useUpdateStatusMutation();
 
   const handleDelete = (post_id: number) => {
     if (!User) return toast.error("Please login to delete post");
@@ -34,9 +44,29 @@ const TopPostCard = ({ post }: any) => {
     deletePost(post_id);
   };
 
+  const updateStatusHandler = (post_id: number, is_hide: boolean) => {
+    let message = is_hide
+      ? "Want to hide Article?"
+      : "Want to publish Article?";
+    if (!confirm(message)) return;
+    const sendingData = { id: post_id, is_hide };
+    updateStatus(sendingData);
+  };
+
+  // update messages
+  useEffect(() => {
+    if (!updating && updateSuccess) {
+      toast.success("Update success!");
+    }
+    if (!updating && updateError) {
+      toast.error("Update failed!");
+    }
+  }, [updateSuccess, updateError]);
+
+  // delete messages
   useEffect(() => {
     if (!deleting && deleted) {
-      toast.success("Post deleted successfully");
+      toast.success("Post delete success!");
     }
   }, [deleted, deleting]);
 
@@ -59,7 +89,7 @@ const TopPostCard = ({ post }: any) => {
         </Link>
       </div>
       <div>
-        <div className="flex justify-between items-center text-sm">
+        <div className="flex justify-between items-center text-sm pb-2">
           <div>
             <Link href={`/profile/${post?.user_id}`} className="pr-4">
               <span className="text-primary font-semibold">{post?.name}</span>
@@ -71,22 +101,41 @@ const TopPostCard = ({ post }: any) => {
           </div>
 
           {User?.user_id === post?.user_id && (
-            <div className="pt-1">
+            <div className="ml-4 pt-1 flex gap-3 items-center">
               <button
                 disabled={deleting}
                 onClick={() => handleDelete(post?.post_id)}
-                className="ml-6 mr-2 tooltip  tooltip-secondary"
+                className="ml-6 mr-2 tooltip tooltip-secondary"
                 data-tip="Delete Post"
               >
-                <MdDeleteOutline />
+                <AiFillDelete />
               </button>
               <Link
                 href={`/write/${post?.slug}`}
-                className="text-neutral ml-2 tooltip  tooltip-secondary"
+                className="text-neutral text-lg tooltip  tooltip-secondary"
                 data-tip="Edit Post"
               >
-                <CiEdit />
+                <AiFillEdit />
               </Link>
+              {post?.is_hide ? (
+                <button
+                  className="btn btn-xs bg-warning tooltip tooltip-secondary"
+                  data-tip="Click to publish"
+                  disabled={updating}
+                  onClick={() => updateStatusHandler(post?.post_id, false)}
+                >
+                  Draft
+                </button>
+              ) : (
+                <button
+                  className="btn btn-xs tooltip tooltip-secondary"
+                  data-tip="Click to Draft"
+                  disabled={updating}
+                  onClick={() => updateStatusHandler(post?.post_id, true)}
+                >
+                  Published
+                </button>
+              )}
             </div>
           )}
         </div>

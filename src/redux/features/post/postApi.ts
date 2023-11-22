@@ -61,6 +61,15 @@ const postApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Post"],
     }),
+    // update status
+    updateStatus: builder.mutation({
+      query: ({ id, is_hide }) => ({
+        url: `/post/status/${id}`,
+        method: "PATCH",
+        body: { is_hide },
+      }),
+      invalidatesTags: ["Post"],
+    }),
     // search posts
     searchPost: builder.query({
       query: (keyword) => ({
@@ -91,6 +100,7 @@ export const {
   useDashboardDataQuery,
   useGetPostBySlugQuery,
   useUpdatePostMutation,
+  useUpdateStatusMutation,
   useCreatePostMutation,
   useSearchPostQuery,
   useGetPostsByUserIdQuery,

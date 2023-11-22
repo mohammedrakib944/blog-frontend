@@ -33,6 +33,9 @@
   .btn-sm {
     @apply px-4 text-xs;
   }
+  .btn-xs {
+    @apply px-3 font-medium border-none;
+  }
   .btn_big {
     @apply btn bg-primary w-full border-none rounded-sm;
   }

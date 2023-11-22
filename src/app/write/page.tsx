@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useGetAllCategoriesQuery } from "@/redux/features/category/categoryApi";
 import { useCreatePostMutation } from "@/redux/features/post/postApi";
 import { useSelector } from "react-redux";
-import { FaBackward } from "react-icons/fa";
+import { FaBackward, FaBookmark } from "react-icons/fa";
 import { FaCloudUploadAlt } from "react-icons/fa";
 // Editor
 // import "react-quill/dist/quill.snow.css";
@@ -70,7 +70,7 @@ const Write = () => {
     },
   };
 
-  const handleFormSubmit = () => {
+  const handleFormSubmit = (is_hide?: boolean) => {
     if (!User) return toast.error("You must login to create post");
     if (!content || !title || !category)
       return toast.error("Content,Title,Category is required");
@@ -87,6 +87,7 @@ const Write = () => {
       content: content,
       category: category,
       user_id: User.user_id,
+      is_hide: is_hide,
     };
     createPost(sendingData);
   };
@@ -94,7 +95,7 @@ const Write = () => {
   // Handle response
   useEffect(() => {
     if (isSuccess) {
-      toast.success("Create post successfully");
+      toast.success("Success!");
       setContent("");
       setTitle("");
       setCoverImage("");
@@ -118,14 +119,26 @@ const Write = () => {
           >
             <FaBackward /> Back
           </button>
-          <button
-            disabled={isLoading}
-            onClick={handleFormSubmit}
-            type="submit"
-            className="btn bg-green-500 hover:bg-green-700 btn-sm"
-          >
-            Publish <FaCloudUploadAlt />
-          </button>
+          <div>
+            <button
+              disabled={isLoading}
+              onClick={() => handleFormSubmit(true)}
+              type="submit"
+              className="btn btn-sm"
+            >
+              Save as Draft
+              <FaBookmark />
+            </button>
+            &nbsp;
+            <button
+              disabled={isLoading}
+              onClick={() => handleFormSubmit(false)}
+              type="submit"
+              className="btn bg-green-500 hover:bg-green-700 btn-sm"
+            >
+              Publish <FaCloudUploadAlt />
+            </button>
+          </div>
         </div>
 
         <div className="flex flex-col md:flex-row gap-5">

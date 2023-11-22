@@ -4,6 +4,7 @@ import { AiFillEdit, AiFillLinkedin, AiFillGithub } from "react-icons/ai";
 import Link from "next/link";
 import TopPostCard from "@/components/home/TopPostCard";
 import { useGetUserByIdQuery } from "@/redux/features/user/userApi";
+import { IoMdAdd } from "react-icons/io";
 import Alerts from "@/components/common/Alerts";
 import Scklaton from "@/components/profile/Scklaton";
 import { useSelector } from "react-redux";
@@ -89,20 +90,26 @@ const page = ({ params }: { params: { user_id: number } }) => {
                     ""
                   )}
                 </div>
-                {loggedInUser?.user_id === User?.user_id && (
-                  <Link href={`/write`}>
-                    <button className="btn btn-sm btn-primary">
-                      Write article
-                    </button>
-                  </Link>
-                )}
               </div>
             </div>
           </div>
 
           <br />
-          <div className="font-semibold mt-4">
-            {User_posts?.length} Articles from {User?.name}
+          <div className="mt-4 flex justify-between items-center">
+            <p>
+              {User_posts?.length}{" "}
+              <span className="text-neutral"> Articles from </span> {User?.name}{" "}
+            </p>
+            {loggedInUser?.user_id === User?.user_id && (
+              <Link href={`/write`}>
+                <button
+                  className="btn btn-sm btn-primary tooltip tooltip-secondary"
+                  data-tip="Write New Article"
+                >
+                  <IoMdAdd />
+                </button>
+              </Link>
+            )}
           </div>
           <div className="mt-3 min-h-screen mb-10 border-t border-accent">
             {User_posts
