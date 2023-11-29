@@ -3,6 +3,9 @@ import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { AiFillEye, AiFillEdit, AiFillDelete } from "react-icons/ai";
+import { IoMdMore } from "react-icons/io";
+import { BiHide } from "react-icons/bi";
+import { TbWorld } from "react-icons/tb";
 import { format, parseISO } from "date-fns";
 import { useSelector } from "react-redux";
 import {
@@ -45,6 +48,7 @@ const TopPostCard = ({ post }: any) => {
   };
 
   const updateStatusHandler = (post_id: number, is_hide: boolean) => {
+    if (!User) return toast.error("Please login first");
     let message = is_hide
       ? "Want to hide Article?"
       : "Want to publish Article?";
@@ -88,7 +92,7 @@ const TopPostCard = ({ post }: any) => {
           />
         </Link>
       </div>
-      <div>
+      <div className="w-full">
         <div className="flex justify-between items-center text-sm pb-2">
           <div>
             <Link href={`/profile/${post?.user_id}`} className="pr-4">
@@ -102,43 +106,55 @@ const TopPostCard = ({ post }: any) => {
 
           {User?.user_id === post?.user_id && (
             <div className="ml-4 pt-1 flex gap-3 items-center">
-              <button
-                disabled={deleting}
-                onClick={() => handleDelete(post?.post_id)}
-                className="ml-6 mr-2 tooltip tooltip-secondary"
-                data-tip="Delete Post"
-              >
-                <AiFillDelete />
-              </button>
-              <Link
-                href={`/write/${post?.slug}`}
-                className="text-neutral text-lg tooltip  tooltip-secondary"
-                data-tip="Edit Post"
-              >
-                <AiFillEdit />
-              </Link>
               {post?.is_hide ? (
-                <button
-                  className="btn btn-xs bg-warning tooltip tooltip-secondary"
-                  data-tip="Click to publish"
-                  disabled={updating}
-                  onClick={() => updateStatusHandler(post?.post_id, false)}
-                >
-                  Draft
-                </button>
+                <span className="badge bg-red-700 text-gray-200">Draft</span>
               ) : (
-                <button
-                  className="btn btn-xs tooltip tooltip-secondary"
-                  data-tip="Click to Draft"
-                  disabled={updating}
-                  onClick={() => updateStatusHandler(post?.post_id, true)}
-                >
-                  Published
-                </button>
+                ""
               )}
             </div>
           )}
+          {User?.user_id === post?.user_id && (
+            <div className="dropdown dropdown-hover dropdown-left">
+              <div tabIndex={0} role="button" className="m-1 text-lg">
+                <IoMdMore />
+              </div>
+              <ul className="dropdown-content z-[1] menu p-2 shadow-lg shadow-black/30 bg-base-100 rounded-lg border border-accent">
+                <li>
+                  <button
+                    disabled={deleting}
+                    onClick={() => handleDelete(post?.post_id)}
+                    className="text-xs"
+                  >
+                    <AiFillDelete /> Delete
+                  </button>
+                  <Link className="text-xs" href={`/write/${post?.slug}`}>
+                    <AiFillEdit /> Edit
+                  </Link>
+                </li>
+                <li>
+                  {post?.is_hide ? (
+                    <button
+                      className="text-xs"
+                      disabled={updating}
+                      onClick={() => updateStatusHandler(post?.post_id, false)}
+                    >
+                      <TbWorld /> Publish
+                    </button>
+                  ) : (
+                    <button
+                      className="text-xs"
+                      disabled={updating}
+                      onClick={() => updateStatusHandler(post?.post_id, true)}
+                    >
+                      <BiHide /> Hide
+                    </button>
+                  )}
+                </li>
+              </ul>
+            </div>
+          )}
         </div>
+
         <Link href={`/article/${post?.slug}`}>
           <div className="mb-1 font-medium text-lg hover:text-primary">
             {post?.title}

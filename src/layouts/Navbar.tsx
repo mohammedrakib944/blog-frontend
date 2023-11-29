@@ -102,7 +102,7 @@ const Navbar = () => {
                 </div>
                 <ul
                   tabIndex={0}
-                  className="dropdown-content z-[1] menu p-2 shadow bg-base-200 rounded-md border border-accent w-52"
+                  className="dropdown-content z-[1] menu p-2 shadow-lg shadow-black/30 bg-base-200 rounded-md border border-accent w-[180px]"
                 >
                   <li className="md:hidden border-b border-accent mb-2 pb-2">
                     <div className="flex flex-col gap-0 hover:cursor-default">
