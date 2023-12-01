@@ -7,6 +7,10 @@ import { API_URL } from "@/redux/features/api/apiSlice";
 import { format, parseISO } from "date-fns";
 import ViewComment from "@/components/DetailsPage/ViewComment";
 
+// import Markdown from "react-markdown";
+// import rehypeHighlight from "rehype-highlight";
+// import "highlight.js/styles/atom-one-dark.min.css";
+
 // Get articlel from server
 async function getArticle(slug: string) {
   const res = await fetch(`${API_URL}/post/${slug}`, { cache: "no-store" });
@@ -87,6 +91,9 @@ const page = async ({ params: { slug } }: { params: { slug: string } }) => {
               className="leading-7 text-base"
               dangerouslySetInnerHTML={{ __html: Article?.content }}
             />
+            // <Markdown rehypePlugins={[rehypeHighlight]}>
+            //   {Article?.content}
+            // </Markdown>
           )}
         </div>
       </div>
