@@ -7,6 +7,7 @@ import Link from "next/link";
 
 const page = ({ params }: { params: { page_number: number } }) => {
   const { page_number } = params;
+  // get all posts 
   const { data: all_posts, isLoading } = useGetAllPostsQuery(
     { page: page_number },
     {
@@ -21,7 +22,7 @@ const page = ({ params }: { params: { page_number: number } }) => {
       <h4 className="border-b pr-4 mt-5 px-5 md:px-10 pb-4">
         Page {Number(page_number) + 1} Articles
       </h4>
-
+      {/* if all posts are present */}
       {all_posts &&
         all_posts.map((post: any) => (
           <TopPostCard key={post.post_id} post={post} />
