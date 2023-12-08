@@ -93,9 +93,9 @@ const ViewComment = ({ Article }: any) => {
       <div className="flex flex-wrap gap-2">
         {Tags?.length > 0 &&
           Tags?.map((tag: string, index: number) => (
-            <Link key={index} href={`/search/${tag}`}>
-              <span className="text-neutral hover:text-white hover:underline duration-150 text-sm cursor-pointer">
-                #{tag}
+            <Link key={index} href={`/search/${tag}`} className="mt-2">
+              <span className="bg-base-200 text-xs py-2 px-3 rounded-lg border border-accent hover:border-primary duration-150 cursor-pointer">
+                {tag}
               </span>
             </Link>
           ))}
