@@ -19,6 +19,8 @@ export default function Home() {
     }
   );
 
+    console.log("Articles: ", all_posts.length);
+
   return (
     <main className="max-w-[1100px] mx-auto flex flex-col lg:grid lg:grid-cols-10 gap-5 mt-3 px-3">
       <div className="col-span-3 order-2 lg:order-1 h-fit lg:sticky top-[68px]">
@@ -58,7 +60,7 @@ export default function Home() {
             )}
             <br />
             <br />
-            {all_posts && (
+            {all_posts?.length > 30 && (
               <div className="pl-10 mb-10">
                 <Link href={`/page/${1}`}>
                   <button className="btn btn-sm">
