@@ -44,7 +44,7 @@ const Navbar = () => {
 
   return (
     <div className="w-full border-b border-accent bg-base-200 z-50 sticky top-0">
-      <div className="homeLayout  grid grid-cols-10 px-3 py-2">
+      <div className="homeLayout  grid grid-cols-10 px-3 py-3">
         <Link href="/" className="col-span-3 flex items-center gap-2">
           <Image className="w-8" src={Logo} alt="Tech" />
           <h3>Techr</h3>

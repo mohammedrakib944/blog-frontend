@@ -19,8 +19,6 @@ export default function Home() {
     }
   );
 
-    console.log("Articles: ", all_posts.length);
-
   return (
     <main className="max-w-[1100px] mx-auto flex flex-col lg:grid lg:grid-cols-10 gap-5 mt-3 px-3">
       <div className="col-span-3 order-2 lg:order-1 h-fit lg:sticky top-[68px]">
