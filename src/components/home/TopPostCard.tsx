@@ -23,7 +23,7 @@ function truncateText(text: any, maxLength: number) {
 }
 
 // Main component
-const TopPostCard = ({ post }: any) => {
+const TopPostCard = ({ post, isLast = false }: any) => {
   const { User } = useSelector((state: any) => state.user);
   const [plainTextContent, setPlainTextContent] = useState("");
   const [deletePost, { isLoading: deleting, isSuccess: deleted }] =
@@ -81,13 +81,16 @@ const TopPostCard = ({ post }: any) => {
   }, [post]);
 
   return (
-    <div className="flex gap-2 border-b border-accent py-5 pl-2 pr-5 md:px-10">
+    <div className="relative flex gap-2 py-5 pl-2 pr-5 md:px-10">
+      {!isLast && (
+        <span className="absolute left-[4.6rem] z-0 w-[2px] h-full bg-gray-500/30"></span>
+      )}
       <Toaster />
-      <div className="min-w-[50px] md:min-w-[100px]">
+      <div className="relative z-10 min-w-[50px] md:min-w-[100px]">
         <Link href={`/profile/${post?.user_id}`}>
           <img
             src={post?.photo || "/avatar.jpg"}
-            className="w-[40px] h-[40px] md:w-[70px] md:h-[70px] hover:scale-105 duration-150 rounded-full object-cover "
+            className="w-[40px] h-[40px] p-1 border border-gray-500/50 bg-base-100 md:w-[70px] md:h-[70px] hover:scale-105 duration-150 rounded-full object-cover "
             alt="Elone"
           />
         </Link>
