@@ -23,7 +23,7 @@ function truncateText(text: any, maxLength: number) {
 }
 
 // Main component
-const TopPostCard = ({ post, isLast = false }: any) => {
+const TopPostCard = ({ post, isLast = true }: any) => {
   const { User } = useSelector((state: any) => state.user);
   const [plainTextContent, setPlainTextContent] = useState("");
   const [deletePost, { isLoading: deleting, isSuccess: deleted }] =
@@ -83,14 +83,14 @@ const TopPostCard = ({ post, isLast = false }: any) => {
   return (
     <div className="relative flex gap-2 py-5 pl-2 pr-5 md:px-10">
       {!isLast && (
-        <span className="absolute left-[4.6rem] z-0 w-[2px] h-full bg-gray-500/30"></span>
+        <span className="none md:absolute left-[4.6rem] z-0 w-[2px] h-full bg-primary/20"></span>
       )}
       <Toaster />
       <div className="relative z-10 min-w-[50px] md:min-w-[100px]">
         <Link href={`/profile/${post?.user_id}`}>
           <img
             src={post?.photo || "/avatar.jpg"}
-            className="w-[40px] h-[40px] p-1 border border-gray-500/50 bg-base-100 md:w-[70px] md:h-[70px] hover:scale-105 duration-150 rounded-full object-cover "
+            className="w-[45px] h-[45px] md:w-[70px] md:h-[70px] p-1 border border-dashed hover:border-solid border-primary/80 bg-base-100  hover:scale-105 duration-150 rounded-full object-cover "
             alt="Elone"
           />
         </Link>
@@ -158,23 +158,25 @@ const TopPostCard = ({ post, isLast = false }: any) => {
           )}
         </div>
 
-        <Link href={`/article/${post?.slug}`}>
-          <div className="mb-1 font-medium text-lg hover:text-primary">
+        <Link href={`/article/${post?.slug}`} className="group">
+          <div className="mb-1 font-medium text-lg group-hover:text-primary">
             {post?.title}
           </div>
+
+          <div className="text-sm text-neutral ">{plainTextContent}</div>
         </Link>
-        <div className="text-sm text-neutral">{plainTextContent}</div>
-        <Link href={`/search/${post?.category}`}>
-          <span className="text-neutral cursor-pointer hover:underline text-xs font-normal">
+        <div className="flex items-center gap-3 mt-2">
+          <p className="text-xs flex items-center gap-2 text-neutral">
+            <span className="text-lg">
+              <AiFillEye />
+            </span>
+            {post?.views} views
+          </p>
+
+          <span className="badge badge-primary bg-gray-500/20 border-none text-neutral">
             {post?.category}
           </span>
-        </Link>
-        <p className="mt-2 text-xs flex items-center gap-2 text-neutral">
-          <span className="text-lg">
-            <AiFillEye />
-          </span>
-          {post?.views} views
-        </p>
+        </div>
       </div>
     </div>
   );

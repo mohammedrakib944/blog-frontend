@@ -48,8 +48,12 @@ export default function Home() {
           <div className="mt-6 pb-4 pt-2 px-3 md:px-10">Latest Articles</div>
           <div className="mt-3 border-t border-accent">
             {all_posts ? (
-              all_posts.map((post: any) => (
-                <TopPostCard key={post.post_id} post={post} />
+              all_posts.map((post: any, index: number) => (
+                <TopPostCard
+                  key={post.post_id}
+                  post={post}
+                  isLast={index === all_posts.length - 1 ? true : false}
+                />
               ))
             ) : (
               <div className="mt-8">

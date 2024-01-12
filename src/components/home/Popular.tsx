@@ -10,8 +10,12 @@ const Popular = () => {
         Popular Articles
       </div>
       {featured_posts ? (
-        featured_posts.map((post: any) => (
-          <TopPostCard key={post.post_id} post={post} />
+        featured_posts.map((post: any, index: number) => (
+          <TopPostCard
+            isLast={index === featured_posts.length - 1 ? true : false}
+            key={post.post_id}
+            post={post}
+          />
         ))
       ) : (
         <div className="mt-8">
