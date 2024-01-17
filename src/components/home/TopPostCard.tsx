@@ -81,10 +81,10 @@ const TopPostCard = ({ post, isLast = true }: any) => {
   }, [post]);
 
   return (
-    <div className="relative flex gap-2 py-5 pl-2 pr-5 md:px-10">
-      {!isLast && (
+    <div className="relative flex gap-2 py-6 pl-2 pr-5 border-b border-accent md:px-10">
+      {/* {!isLast && (
         <span className="none md:absolute left-[4.6rem] z-0 w-[2px] h-full bg-primary/20"></span>
-      )}
+      )} */}
       <Toaster />
       <div className="relative z-10 min-w-[50px] md:min-w-[100px]">
         <Link href={`/profile/${post?.user_id}`}>
